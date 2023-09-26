@@ -7,7 +7,7 @@ draft = true
 - [PDF of Slides](./parameters_talk.pdf)
 - [generate_parameter_library](https://github.com/PickNikRobotics/generate_parameter_library)
 
-# ROS Parameter References
+## ROS Parameter References
 
 - [Parameter Concept](https://docs.ros.org/en/rolling/Concepts/Basic/About-Parameters.html)
 - [Understanding ROS 2 Parameters Tutorial](https://docs.ros.org/en/rolling/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Parameters/Understanding-ROS2-Parameters.html)
@@ -18,7 +18,7 @@ draft = true
 - [parameter_blackboard source](https://github.com/ros2/demos/blob/rolling/demo_nodes_cpp/src/parameters/parameter_blackboard.cpp)
 - [Parameter API design in ROS](https://design.ros2.org/articles/ros_parameters.html)
 
-# Elsie
+## Elsie
 
 The slides for this presentation were generated using a python library called [Elsie](https://spirali.github.io/elsie/).
 This is my second presentation I've created using this library and I am a huge fan.
