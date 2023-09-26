@@ -18,14 +18,11 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-        with:
-          submodules: true
 
       - name: Build
         uses: shalzz/zola-deploy-action@v0.17.2
         env:
           BUILD_ONLY: true
-          BUILD_FLAGS: --drafts
 
       - name: Upload pages artifact
         uses: actions/upload-pages-artifact@v2

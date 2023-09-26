@@ -1,7 +1,11 @@
 +++
 title = "ROSCON 2023 - Parameters Should be Boring"
 date = 2023-10-20
-draft = true
+type = "post"
+description = "generate_parameter_library"
+in_search_index = true
+[taxonomies]
+tags = ["Talks"]
 +++
 
 - [PDF of Slides](./parameters_talk.pdf)
