@@ -63,3 +63,7 @@ I have not figured out how to use boa with a channel.
 [Read the docs](https://quetz.readthedocs.io/en/latest/)
 
 Open source server for conda packages.
+
+## Links
+
+- [Pixi Crispy Doom](https://github.com/baszalmstra/pixi-crispy-doom) - What it sounds like!
