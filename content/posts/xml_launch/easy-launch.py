@@ -5,6 +5,8 @@ from elsie.ext import unordered_list
 
 slides = elsie.SlideDeck(width=1920, height=1080)
 
+images_dir = "../../../static/images/"
+
 slides.update_style(
     "default", elsie.TextStyle(font="Lato", align="left", size=48, color="white")
 )
@@ -58,7 +60,7 @@ def author(slide):
     content = slide.fbox(horizontal=True)
     text_area = content.box(width="50%", p_left=120)
     text_area.update_style("default", elsie.TextStyle(color="black"))
-    image_area = content.box(width="fill").image("images/kart.jpg")
+    image_area = content.box(width="fill").image(images_dir+"kart.jpg")
     lst = unordered_list(text_area)
     lst.item().text("Racing Kart Driver")
     lst.item().text("MoveIt Maintainer")
