@@ -11,7 +11,7 @@ from elsie.boxtree.box import Box
 from my_layouts import *
 
 
-slides = init_slides()
+slides = init_deck()
 
 
 @slides.slide(debug_boxes=False)
@@ -45,19 +45,21 @@ def part_1(slide):
 
 @slides.slide(debug_boxes=False)
 def innocence(slide):
-    code_slide(
+    grayed_before_after_code_slide(
         slide,
         "Getting Started",
         "C++",
-        """
-int main(int argc, char ** argv)
+        """int main(int argc, char ** argv)
 {
   rclcpp::init(argc, argv);
 
   auto node = std::make_shared<rclcpp::Node>("minimal_param_node");
+""",
+        """
   auto my_string = node->declare_parameter("my_string", "world");
   auto my_number = node->declare_parameter("my_number", 23);
-
+""",
+        """
   rclcpp::spin(node);
   rclcpp::shutdown();
 }
@@ -342,4 +344,4 @@ def thank_you(slide):
     )
 
 
-render_slides(slides, "roscon23_parameters.pdf")
+render_deck(slides, "roscon23_parameters.pdf")

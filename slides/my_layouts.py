@@ -11,15 +11,18 @@ def get_image_path(filename: str):
     return get_static_path("images/" + filename)
 
 
-def init_slides():
+def init_deck():
     slides = elsie.SlideDeck(width=1920, height=1080)
     slides.update_style("default", elsie.TextStyle(font="Lato", align="left", size=64))
     slides.update_style("code", elsie.TextStyle(size=38))
     slides.set_style("link", elsie.TextStyle(color="blue"))
+    grayed = slides.get_style("code")
+    grayed.color = "gray"
+    slides.set_style("grayed", grayed)
     return slides
 
 
-def render_slides(slides: elsie.SlideDeck, filename: str):
+def render_deck(slides: elsie.SlideDeck, filename: str):
     slides.render(get_static_path("pdf/" + filename))
 
 
@@ -45,11 +48,36 @@ def section_title_slide(parent: Box, title: str, subtitle: str):
     content.box().text(subtitle)
 
 
+# Returns the code object so you can do line highlighting
 def code_slide(parent: Box, title: str, language: str, code: str):
     content = logo_header_slide(parent, title)
     code_bg = "#F6F8FA"
-    box = content.box(y=0, width="100%", height="100%", p_bottom=20)
+    box = content.box(y=0, width="100%", height="100%", p_bottom=20, z_level=-2)
     box.rect(bg_color=code_bg, rx=20, ry=20)
-    box.overlay().box(x=0, y=0, p_left=20, p_right=20, p_top=20, p_bottom=20).code(
-        language, code
+    return (
+        box.overlay()
+        .sbox(x=0, y=0, p_left=20, p_right=20, p_top=20, p_bottom=20, z_level=0)
+        .code(language, code)
     )
+
+
+def grayed_before_after_code_slide(
+    parent: Box, title: str, language: str, before: str, code: str, after: str
+):
+    content = logo_header_slide(parent, title)
+    code_bg = "#F6F8FA"
+    box = content.box(y=0, width="100%", height="100%", p_bottom=20, z_level=-2)
+    box.rect(bg_color=code_bg, rx=20, ry=20)
+    overlay = box.overlay()
+    before_box = overlay.sbox(
+        name="before", x=0, y=0, p_left=20, p_right=20, p_top=20, p_bottom=20, z_level=0
+    )
+    before_box.text(before, "grayed")
+    code_box = overlay.sbox(
+        name="code", x=0, y=before_box.y("100%"), z_level=0, p_left=20, p_right=20
+    )
+    code_box.code(language, code)
+    after_box = overlay.sbox(
+        name="after", x=0, y=code_box.y("100%"), z_level=0, p_left=20, p_right=20
+    )
+    after_box.text(after, "grayed")
