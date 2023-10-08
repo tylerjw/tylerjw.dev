@@ -20,7 +20,7 @@ slides.set_style("link", elsie.TextStyle(color="blue"))
 
 
 def logo_header_slide(parent: Box, title: str):
-    parent.box(x=1570, y=40).image(images_dir+"picknik_logo.png")
+    parent.box(x=1570, y=40).image(images_dir + "picknik_logo.png")
     parent.sbox(name="header", x=0, height=140).fbox(p_left=20).text(
         title, elsie.TextStyle(bold=True)
     )
@@ -67,7 +67,7 @@ def title(slide):
 
 @slides.slide(debug_boxes=False)
 def author(slide):
-    text_area = image_slide(slide, "Tyler Weaver", images_dir+"kart.jpg")
+    text_area = image_slide(slide, "Tyler Weaver", images_dir + "kart.jpg")
     lst = unordered_list(text_area)
     lst.item().text("Racing Kart Driver")
     lst.item().text("MoveIt Maintainer")
