@@ -1,13 +1,11 @@
 #!/usr/bin/env python3
 
 # TODO:
-# - qr codes!
 # - What is the call to action? What should people do use / contribute / upstream?
 # - How do we theme the presentation? Jokes? Capture / Hold attention?
 
 import elsie
 from elsie.ext import unordered_list
-from elsie.boxtree.box import Box
 from my_layouts import *
 
 
@@ -54,16 +52,15 @@ def innocence(slide):
   rclcpp::init(argc, argv);
 
   auto node = std::make_shared<rclcpp::Node>("minimal_param_node");
-""",
-        """
   auto my_string = node->declare_parameter("my_string", "world");
   auto my_number = node->declare_parameter("my_number", 23);
-""",
-        """
+
   rclcpp::spin(node);
   rclcpp::shutdown();
 }
 """,
+        5,
+        2,
     )
 
 
@@ -73,8 +70,21 @@ def struct_with_defaults(slide):
         slide,
         "Parameter Struct",
         "C++",
-        """
-struct Params {
+        """struct Params {
+  std::string my_string = "world";
+  int my_number = 23;
+};
+""",
+    )
+
+
+@slides.slide(debug_boxes=False)
+def struct_with_defaults(slide):
+    grayed_before_after_code_slide(
+        slide,
+        "Parameter Struct",
+        "C++",
+        """struct Params {
   std::string my_string = "world";
   int my_number = 23;
 };
@@ -91,6 +101,8 @@ int main(int argc, char ** argv)
   rclcpp::shutdown();
 }
 """,
+        9,
+        3,
     )
 
 
@@ -100,39 +112,80 @@ def details(slide):
         slide,
         "ParameterDescriptor",
         "C++",
-        """
-int main(int argc, char ** argv)
-{
-  rclcpp::init(argc, argv);
-  auto node = std::make_shared<rclcpp::Node>("minimal_param_node");
-  auto params = Params{};
-
-  auto param_desc  = rcl_interfaces::msg::ParameterDescriptor{};
+        """  auto param_desc  = rcl_interfaces::msg::ParameterDescriptor{};
   param_desc.description = "Mine!";
   param_desc.additional_constraints  = "One of [world, base, home]";
   params.my_string = node->declare_parameter("my_string",
     params.my_string, param_desc);
-
-  param_desc  = rcl_interfaces::msg::ParameterDescriptor{};
-  param_desc.description = "Who controls the universe?";
-  param_desc.additional_constraints  = "A multiple of 23";
-  params.my_number = node->declare_parameter("my_number",
-    params.my_number, param_desc);
-  //...
 """,
     )
 
 
 @slides.slide(debug_boxes=False)
+def details(slide):
+    grayed_before_after_code_slide(
+        slide,
+        "ParameterDescriptor",
+        "C++",
+        """  auto param_desc  = rcl_interfaces::msg::ParameterDescriptor{};
+  param_desc.description = "Mine!";
+  param_desc.additional_constraints  = "One of [world, base, home]";
+  params.my_string = node->declare_parameter("my_string",
+    params.my_string, param_desc);
+  param_desc  = rcl_interfaces::msg::ParameterDescriptor{};
+  param_desc.description = "Who controls the universe?";
+  param_desc.additional_constraints  = "A multiple of 23";
+  params.my_number = node->declare_parameter("my_number",
+    params.my_number, param_desc);
+  // ...
+""",
+        5,
+        5,
+    )
+
+
+@slides.slide(debug_boxes=False)
 def validate(slide):
-    code_slide(
+    grayed_before_after_code_slide(
         slide,
         "Validation",
         "C++",
-        """
-auto const _ = node->add_on_set_parameters_callback(
+        """auto const _ = node->add_on_set_parameters_callback(
   [](std::vector<rclcpp::Parameter> const& params)
-  {
+  -> rcl_interfaces::msg::SetParametersResult {
+""",
+        0,
+        3,
+    )
+
+
+@slides.slide(debug_boxes=False)
+def validate(slide):
+    grayed_before_after_code_slide(
+        slide,
+        "Validation",
+        "C++",
+        """auto const _ = node->add_on_set_parameters_callback(
+  [](std::vector<rclcpp::Parameter> const& params)
+  -> rcl_interfaces::msg::SetParametersResult {
+    for (auto const& param : params) {
+      if(param.get_name() == "my_string") {
+          auto const value = param.get_value<std::string>();
+""",
+        3,
+        3,
+    )
+
+
+@slides.slide(debug_boxes=False)
+def validate(slide):
+    grayed_before_after_code_slide(
+        slide,
+        "Validation",
+        "C++",
+        """auto const _ = node->add_on_set_parameters_callback(
+  [](std::vector<rclcpp::Parameter> const& params)
+  -> rcl_interfaces::msg::SetParametersResult {
     for (auto const& param : params) {
       if(param.get_name() == "my_string") {
           auto const value = param.get_value<std::string>();
@@ -145,11 +198,9 @@ auto const _ = node->add_on_set_parameters_callback(
               .append("} not one of: [world, base, home]");
             return result;
           }
-        }
-      }
-    return rcl_interfaces::msg::SetParametersResult{};
-  });
 """,
+        5,
+        10,
     )
 
 
@@ -333,14 +384,11 @@ def gpl(slide):
 
 @slides.slide(debug_boxes=False)
 def thank_you(slide):
-    content = logo_header_slide(slide, "")
-    content.fbox().text(
-        "Questions?\n~link{github.com/PickNikRobotics/generate_parameter_library}\n",
-        elsie.TextStyle(align="middle"),
-    )
+    content = logo_header_slide(slide, "Questions?")
+    content.fbox().image("images/parameters_link_qr.svg")
     content.sbox(p_bottom=20).text(
-        "Slides generated using Elsie\n~link{tylerjw.dev/roscon23-parameters/}",
-        elsie.TextStyle(align="right", size=32),
+        "Slides rendered using Elsie\n~link{tylerjw.dev/posts/roscon23-parameters/}",
+        elsie.TextStyle(align="middle", size=32),
     )
 
 

@@ -47,4 +47,4 @@ def code_slide(parent: Box, title: str, language: str, code: str):
        .code(language, code)
 ```
 
-You can find the [full source of the talk slides here](parameters_talk.py).
+You can find the [full source of the talk slides here](https://github.com/tylerjw/tylerjw.dev/blob/main/slides/roscon23_parameters.py).
