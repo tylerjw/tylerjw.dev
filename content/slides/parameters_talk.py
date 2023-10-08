@@ -12,7 +12,7 @@ from elsie.boxtree.box import Box
 
 slides = elsie.SlideDeck(width=1920, height=1080)
 
-images_dir = "../../../static/images/"
+images_dir = "../../static/images/"
 
 slides.update_style("default", elsie.TextStyle(font="Lato", align="left", size=64))
 slides.update_style("code", elsie.TextStyle(size=38))
@@ -379,4 +379,4 @@ def thank_you(slide):
     )
 
 
-slides.render("parameters_talk.pdf")
+slides.render("pdf/parameters_talk.pdf")
