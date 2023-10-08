@@ -342,4 +342,4 @@ def thank_you(slide):
     )
 
 
-slides.render("pdf/parameters_talk.pdf")
+render_slides(slides, "roscon23_parameters.pdf")

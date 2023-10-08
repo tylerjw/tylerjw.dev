@@ -8,7 +8,7 @@ in_search_index = true
 tags = ["Talks"]
 +++
 
-- [Slides PDF](/slides/pdf/parameters_talk.pdf)
+- [Slides PDF](/pdf/roscon23_parameters.pdf)
 - [generate_parameter_library](https://github.com/PickNikRobotics/generate_parameter_library)
 
 ## ROS Parameter References

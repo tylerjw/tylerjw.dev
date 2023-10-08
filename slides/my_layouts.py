@@ -2,6 +2,15 @@ import elsie
 from elsie.boxtree.box import Box
 
 
+def get_static_path(filename: str):
+    static_dir = "../static/"
+    return static_dir + filename
+
+
+def get_image_path(filename: str):
+    return get_static_path("images/" + filename)
+
+
 def init_slides():
     slides = elsie.SlideDeck(width=1920, height=1080)
     slides.update_style("default", elsie.TextStyle(font="Lato", align="left", size=64))
@@ -10,9 +19,8 @@ def init_slides():
     return slides
 
 
-def get_image_path(filename: str):
-    images_dir = "../../static/images/"
-    return images_dir + filename
+def render_slides(slides: elsie.SlideDeck, filename: str):
+    slides.render(get_static_path("pdf/" + filename))
 
 
 def logo_header_slide(parent: Box, title: str):
