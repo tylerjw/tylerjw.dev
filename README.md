@@ -7,3 +7,13 @@ To build locally [install zola](https://www.getzola.org/documentation/getting-st
 ```bash
 zola serve
 ```
+
+## Building slides
+
+To build the slides install the library elsie using pip.
+
+To use the watch script install inotify-tools:
+
+```bash
+sudo apt install inotify-tools
+```
