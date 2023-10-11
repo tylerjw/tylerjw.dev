@@ -395,8 +395,8 @@ def thank_you(slide):
 def users(slide):
     content = logo_header_slide(slide, "Users")
     lst = unordered_list(content.box())
-    lst.item().text("ros2_control")
     lst.item().text("MoveIt 2")
+    lst.item().text("ros2_control")
     lst.item().text("PickNik Clients")
     lst.item().text("you?")
 
