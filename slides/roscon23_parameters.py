@@ -352,6 +352,56 @@ def gpl(slide):
 
 
 @slides.slide(debug_boxes=False)
+def thank_you(slide):
+    content = logo_header_slide(slide, "Contributions")
+
+    content = content.fbox(horizontal=True, p_top=20, p_bottom=20)
+    lst = unordered_list(content.fbox())
+    lst.item().text("Paul Gesel")
+    lst.item().text("Tyler Weaver")
+    lst.item().text("Christoph Fröhlich")
+    lst.item().text("Denis Stogl")
+    lst.item().text("Scott K Logan")
+    lst.item().text("Felix Exner (fexner)")
+    lst.item().text("GuiHome")
+    lst.item().text("Jan Gutsche")
+    lst.item().text("chriseichmann")
+    lst.item().text("sprenger120")
+    lst.item().text("mosfet80")
+    lst = unordered_list(content.fbox())
+    lst.item().text("Chris Thrasher")
+    lst.item().text("light-tech")
+    lst.item().text("Michael Wrock")
+    lst.item().text("Griswald Brooks")
+    lst.item().text("Steven! Ragnarök")
+    lst.item().text("Diogo Almeida")
+    lst.item().text("Chien shao-yu")
+    lst.item().text("Błażej Sowa")
+    lst.item().text("Florian Vahl")
+    lst.item().text("Sai Kishor Kothakota")
+    lst.item().text("Siddharth Saha")
+    lst = unordered_list(content.fbox())
+    lst.item().text("Bruno-Pier")
+    lst.item().text("Guelakais")
+    lst.item().text("Masaya Kataoka")
+    lst.item().text("Charles Cross")
+    lst.item().text("bijoua29")
+    lst.item().text("g-argyropoulos")
+    lst.item().text("agonzat")
+    lst.item().text("Chance Cardona")
+
+
+@slides.slide(debug_boxes=False)
+def users(slide):
+    content = logo_header_slide(slide, "Users")
+    lst = unordered_list(content.box())
+    lst.item().text("ros2_control")
+    lst.item().text("MoveIt 2")
+    lst.item().text("PickNik Clients")
+    lst.item().text("you?")
+
+
+@slides.slide(debug_boxes=False)
 def part3(slide):
     section_title_slide(slide, "Boring?", "Part 3")
 
