@@ -258,6 +258,7 @@ def error(slide):
     slide.set_style("shell", elsie.TextStyle(color="white"), base="code")
     slide.set_style("prompt", elsie.TextStyle(color="#aaaaff"))
     slide.set_style("cmd", elsie.TextStyle(color="yellow"))
+    slide.set_style("red", elsie.TextStyle(color="red"))
 
     content = logo_header_slide(slide, "Validation")
     console = content.box(width="95%")
@@ -267,8 +268,8 @@ def error(slide):
         "terminate called after throwing an instance of \n"
         "  'rclcpp::exceptions::InvalidParameterValueException'\n\n"
         "what():  Invalid value set during initialization for parameter 'my_string':\n"
-        "  Parameter 'my_string' with the 'value' place is not in the set\n"
-        "    '{world, base, home}'\n",
+        "  Parameter !red{'my_string'} with the value !red{'place'} is not in the set\n"
+        "    !red{'[world, base, home]'}\n",
         "shell",
         escape_char="!",
     )
@@ -277,8 +278,8 @@ def error(slide):
     console.rect(bg_color="black")
     console.box(p_x=20, p_y=20, x=0).text(
         '!prompt{~/ws$} !cmd{ros2 param set /node_name my_string "hello"}\n'
-        "Setting parameter failed: Parameter 'my_string' with the value 'hello' is\n"
-        "  not in the set '{world, base, home}'}\n",
+        "Setting parameter failed: Parameter !red{'my_string'} with the value !red{'hello'} is\n"
+        "  not in the set !red{'[world, base, home]'}\n",
         "shell",
         escape_char="!",
     )
