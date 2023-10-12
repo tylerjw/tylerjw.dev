@@ -235,19 +235,50 @@ def gpl(slide):
 minimal_param_node:
     my_string: {
         type: string,
-        description: "Mine!"
+        description: "Mine!",
         validation: {
             one_of<>: [["world", "base", "home"]]
         }
     }
     my_number: {
-        type: int
-        description: "Mine!"
+        type: int,
+        description: "Mine!",
         validation: {
             multiple_of_23: []
         }
     }
 """,
+    )
+
+
+@slides.slide(debug_boxes=False)
+def error(slide):
+    slide.set_style("shell", elsie.TextStyle(color="white"), base="code")
+    slide.set_style("prompt", elsie.TextStyle(color="#aaaaff"))
+    slide.set_style("cmd", elsie.TextStyle(color="yellow"))
+
+    content = logo_header_slide(slide, "Validation")
+    console = content.box(width="95%")
+    console.rect(bg_color="black")
+    console.box(p_x=20, p_y=20, x=0).text(
+        "!prompt{~/ws$} !cmd{ros2 run ...}\n"
+        "terminate called after throwing an instance of \n"
+        "  'rclcpp::exceptions::InvalidParameterValueException'\n\n"
+        "what():  Invalid value set during initialization for parameter 'my_string':\n"
+        "  Parameter 'my_string' with the 'value' place is not in the set\n"
+        "    '{world, base, home}'\n",
+        "shell",
+        escape_char="!",
+    )
+    content.box(height=30)
+    console = content.box(width="95%")
+    console.rect(bg_color="black")
+    console.box(p_x=20, p_y=20, x=0).text(
+        '!prompt{~/ws$} !cmd{ros2 param set /node_name my_string "hello"}\n'
+        "Setting parameter failed: Parameter 'my_string' with the value 'hello' is\n"
+        "  not in the set '{world, base, home}'}\n",
+        "shell",
+        escape_char="!",
     )
 
 
