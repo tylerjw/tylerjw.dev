@@ -14,7 +14,7 @@ tags = ["Packaging"]
 - [ ] Upload packages to prefix.dev
 - [ ] Consume packages from prefix.dev
 - [ ] Generate recipe from package.xml using `vinca`
-- [ ] Use `boa` with a channel
+- [ ] Use `boa` with a channel (condarc file)
 - [ ] Setup and test with local `quetz` server
 
 ## Experimenting with cpp_polyfills
@@ -67,3 +67,13 @@ Open source server for conda packages.
 ## Links
 
 - [Pixi Crispy Doom](https://github.com/baszalmstra/pixi-crispy-doom) - What it sounds like!
+
+
+# Notes
+
+Deployment:
+
+https://github.com/conda/constructor
+Creates installers from conda packages
+
+Rattler crates are underlying code for pixi

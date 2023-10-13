@@ -76,7 +76,7 @@ def section_title_slide(parent: Box, title: str, subtitle: str):
 # Returns the code object so you can do line highlighting
 def code_slide(parent: Box, title: str, language: str, code: str):
     content = logo_header_slide(parent, title)
-    code_bg = "#F6F8FA"
+    code_bg = "#EAEAEA"
     box = content.box(y=0, width="100%", height="100%", p_bottom=20, z_level=-2)
     box.rect(bg_color=code_bg, rx=20, ry=20)
     return (
@@ -95,7 +95,7 @@ def grayed_before_after_code_slide(
     code_lines: int,
 ):
     content = logo_header_slide(parent, title)
-    code_bg = "#F6F8FA"
+    code_bg = "#EAEAEA"
     box = content.box(y=0, width="100%", height="100%", p_bottom=20, z_level=-2)
     box.rect(bg_color=code_bg, rx=20, ry=20)
     overlay = box.overlay()

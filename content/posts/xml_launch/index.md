@@ -1,5 +1,5 @@
 +++
-title = "Boulder is for Robotics - Retro ROS 2 Launch"
+title = "ROSCON 2023 - Retro ROS 2 Launch"
 date = 2023-09-04
 type = "post"
 description = "XML vs Python"
@@ -8,7 +8,8 @@ in_search_index = true
 tags = ["Talks"]
 +++
 
-- [PDF of Slides](./easy-launch.pdf)
+- [PDF of Slides](/pdf/xml_launch.pdf)
+- [Demo code for launching moveit](https://github.com/tylerjw/tylerjw.dev/tree/main/content/posts/xml_launch/easy_launch_demo)
 
 # Launching MoveIt using XML
 
@@ -21,14 +22,17 @@ I also took the dozen or so config files and reduced them to just these:
 - `urdf` <- robot description
 - `srdf` <- semantic robot description
 
-#### Caviot, or rather colon
+#### Use the types
 
 Due to an issue with how parameter value strings are parsed in the xml launch system the SRDF didn't parse at first.
-The reason is that the string is parsed as yaml and when it discovers specific characters the parser fails.
-In the case of the Kinova srdf the only character that was a problem was the colon `:`.
-And all the colons were in comments.
-So to get this to work you'll need to remove the colons from the comments in the srdf.
-I am working on a change for xml launch to fix this.
+I had an ugly work-around that involved modifying the xml files, but [G.A. vd. Hoorn](https://github.com/gavanderhoorn) came to my rescue and [posted this in github](https://github.com/ros2/launch/issues/729#issuecomment-1743445571).
+
+The trick to string parameters is to put a `type="str"` attribute in the string parameters and they work.
+
+## References:
+
+- [ROS 2 XML Launch Docs](https://docs.ros.org/en/rolling/How-To-Guides/Migrating-from-ROS1/Migrating-Launch-Files.html)
+- [Comparing Python/XML/YAML](https://docs.ros.org/en/rolling/How-To-Guides/Launch-file-different-formats.html)
 
 ## The launch file
 
@@ -44,15 +48,15 @@ I am working on a change for xml launch to fix this.
 
   <!-- MoveGroup -->
   <node pkg="moveit_ros_move_group" exec="move_group" output="screen">
-    <param name="robot_description" value="$(var robot_description)" />
-    <param name="robot_description_semantic" value="$(var robot_description_semantic)" />
+    <param name="robot_description" value="$(var robot_description)" type="str" />
+    <param name="robot_description_semantic" value="$(var robot_description_semantic)" type="str" />
     <param from="$(find-pkg-share easy_launch_demo)/config/moveit.yaml" />
   </node>
 
   <!-- RViz -->
   <node pkg="rviz2" exec="rviz2" name="rviz2" output="log" args="-d $(find-pkg-share moveit2_tutorials)/launch/kinova_moveit_config_demo.rviz">
-    <param name="robot_description" value="$(var robot_description)" />
-    <param name="robot_description_semantic" value="$(var robot_description_semantic)" />
+    <param name="robot_description" value="$(var robot_description)" type="str" />
+    <param name="robot_description_semantic" value="$(var robot_description_semantic)" type="str" />
     <param from="$(find-pkg-share easy_launch_demo)/config/moveit.yaml" />
   </node>
 
@@ -62,12 +66,12 @@ I am working on a change for xml launch to fix this.
 
   <!-- Publish TF -->
   <node pkg="robot_state_publisher" exec="robot_state_publisher" name="robot_state_publisher" output="both" >
-    <param name="robot_description" value="$(var robot_description)" />
+    <param name="robot_description" value="$(var robot_description)" type="str" />
   </node>
 
   <!-- ros2_control -->
   <node pkg="controller_manager" exec="ros2_control_node" output="both" >
-    <param name="robot_description" value="$(var robot_description)" />
+    <param name="robot_description" value="$(var robot_description)" type="str" />
     <param from="$(find-pkg-share kinova_gen3_7dof_robotiq_2f_85_moveit_config)/config/ros2_controllers.yaml" />
   </node>
 
