@@ -17,3 +17,7 @@ To use the watch script install inotify-tools:
 ```bash
 sudo apt install inotify-tools
 ```
+
+## Generate QR codes for slides
+
+Use [qrcode-monkey](https://www.qrcode-monkey.com/).
