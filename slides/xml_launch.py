@@ -260,11 +260,12 @@ def better_place(slide):
     text_box.set_style("bold", elsie.TextStyle(bold=True))
     lst = unordered_list(text_box)
     lst.item().text(
-        "Launch demo with !bold{43} lines of XML vs !bold{~1000} lines of Python",
+        "Launch MoveIt with !bold{43} lines of XML vs !bold{~1000} lines of Python",
         escape_char="!",
     )
     lst.item().text("Single ~link{moveit.yaml} config for MoveIt")
-    lst.item().text("Try it yourself: ~link{github.com/tylerjw/easy_ros2_launch_talk}")
+    lst.item().text("Try it yourself: ~link{tylerjw.dev/posts/xml-launch}")
+    content.fbox().image("images/xml_launch_link_qr.svg")
 
 
 render_deck(slides, "xml_launch.pdf")
