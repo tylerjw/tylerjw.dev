@@ -7,41 +7,6 @@ from my_layouts import *
 
 slides = init_deck()
 
-# slides = elsie.SlideDeck(width=1920, height=1080)
-
-# images_dir = "../../../static/images/"
-
-# slides.update_style(
-#     "default", elsie.TextStyle(font="Lato", align="left", size=48, color="white")
-# )
-# slides.update_style("code", elsie.TextStyle(size=36))
-
-# title = slides.get_style("default")
-# title.size = 60
-# title.bold = True
-# title.color = "white"
-# slides.set_style("title", title)
-
-# subtitle = slides.get_style("title")
-# subtitle.size = 36
-# subtitle.italic = True
-# subtitle.color = "white"
-# slides.set_style("subtitle", subtitle)
-
-# header = slides.get_style("default")
-# header.bold = True
-# slides.set_style("header", header)
-
-# bold_text = slides.get_style("default")
-# bold_text.bold = True
-# slides.set_style("bold", bold_text)
-
-# black_text = slides.get_style("default")
-# black_text.color = "black"
-# slides.set_style("black", black_text)
-
-# slides.set_style("link", elsie.TextStyle(color="blue"))
-
 
 @slides.slide(debug_boxes=False)
 def title(slide):
@@ -71,7 +36,7 @@ def author(slide):
 def comfort_zone(slide):
     code_slide(
         slide,
-        "Comfort Zone: ROS 1 Launch",
+        "The launch file you remember",
         "xml",
         """
 <launch>
