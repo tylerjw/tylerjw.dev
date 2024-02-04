@@ -4,3 +4,4 @@ install/
 log/
 elsie-cache/
 __pycache__/
+.venv/
