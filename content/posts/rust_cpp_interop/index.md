@@ -256,10 +256,11 @@ struct RawVecDouble {
     size_t capacity;
 };
 
-extern const double* robot_joint_calculate_transform(const rust::Joint*, const double*, unsigned int);
+extern const double* robot_joint_calculate_transform(const robot_joint::rust::Joint*, const double*, unsigned int);
 extern void vector_free(const RawVecDouble*);
 }
 
+namespace robot_joint {
 Eigen::Isometry3d Joint::calculate_transform(const Eigen::VectorXd& variables)
 {
     const auto data = robot_joint_calculate_transform(joint_, variables.data(), variables.size());
@@ -268,6 +269,7 @@ Eigen::Isometry3d Joint::calculate_transform(const Eigen::VectorXd& variables)
     vector_free(data);
     return t;
 }
+}  // namespace robot_joint
 ```
 
 This approach involves several type conversions.
