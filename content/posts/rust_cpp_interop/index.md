@@ -283,6 +283,11 @@ Lastly, I call a rust function to free the vector.
 You will likely have more trouble convincing your C++ loving coworkers to let you write code in Rust than doing the interop.
 Building a bridge that creates both nice C++ and Rust interfaces is not as hard as many think.
 
+## Future Work
+
+Code without tests should be considered broken.
+To trust all this unsafe C++ and Rust code we should write tests that exercise all the code paths and run them with sanitizers.
+
 ## References
 
 - [The Rustnomicon](https://doc.rust-lang.org/nomicon/) -- The dark arts of unsafe Rust
