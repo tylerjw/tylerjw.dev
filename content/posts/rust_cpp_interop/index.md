@@ -24,12 +24,12 @@ Here are some that I have heard:
 
 Research has demonstrated that [diversity leads to better business outcomes](https://www.mckinsey.com/capabilities/people-and-organizational-performance/our-insights/why-diversity-matters).
 It is also better for our projects.
-Homogenous projects may feel more comfortable.
+Homogeneous projects may feel more comfortable.
 The fear of *the other* and the desire for comfort is the underlying motivations in these statements.
 
 Programming is a craft and the qualtiy of the outcome of our work is improved by working together from different perspectives.
 C++, the projects built in it, and the programmers who use it have value.
-Rust brings new ideas and new perspectives and building a bridge within our projects can lead to code-bases that are better than they were as homogenous projects.
+Rust brings new ideas and new perspectives and building a bridge within our projects can lead to code-bases that are better than they were as homogeneous projects.
 
 Writing software is a team sport where we want to welcome a diversity of ideas and approaches to find the best solutions to any given problem.
 Even if you wanted to rewrite a large C++ project into Rust that is unlikely to be possible given project timelines and the makeup of your team.
@@ -65,7 +65,7 @@ From these two building blocks we can use a C++ class which holds the opaque poi
 One important reason this is necisary is that allocators and deallocators come in pairs.
 It is not valid to destruct a Rust object with the C++ deallocator or vice-versa.
 
-In cases where we need to create C++ library types from Rust library types such as creating a `Eigen::Isometry3d` from a `nalgebra::geometry::Isometry3` we must copy the underlying data instead of sharing the memroy.
+In cases where we need to create C++ library types from Rust library types such as creating a `Eigen::Isometry3d` from a `nalgebra::geometry::Isometry3` we must copy the underlying data instead of sharing the memory.
 This is because in C++ there is no way for us to extend a library type to handle destruction of the underlying memory using a different deallocator.
 Similar to the custom type situation above with the opaque types we must have an unsafe rust function to free the memory for the Rust types and call it before returning from our C++ function.
 
@@ -110,7 +110,7 @@ extern "C" fn robot_joint_free(joint: *mut Joint) {
 ```
 
 Each of these functions need the `#[no_mangle]`  attribute to turn off Rust name mangling and `extern "C"` to give the function the C calling convention.
-`Box::into_raw(Box::new(` is a techique for creating a Rust object on the heap and leaking a pointer to it.
+`Box::into_raw(Box::new(` is a technique for creating a Rust object on the heap and leaking a pointer to it.
 Lastly, `drop(Box::from_raw` is a way to take a pointer and convert it back into a Box type and destroy it.
 
 Next we create a C++ header `robot_joint.hpp`:
@@ -182,7 +182,7 @@ Here is a complete example with all the various moving parts from Kyle's OptIk l
 ## First-class Library Types
 
 Remember I said I took the manual approach because I wanted an interface with Eigen types on the C++ side.
-Here is a simple example of how to acomplish that.
+Here is a simple example of how to accomplish that.
 Presume we have this Rust function on our `Joint` type:
 ```rust
 impl Joint {

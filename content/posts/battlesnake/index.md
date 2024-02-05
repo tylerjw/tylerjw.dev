@@ -18,7 +18,7 @@ To get everyone started fast, I'm going to quickly walk you through setting up y
 ## Testing
 
 You'll need a copy of the Battlesnake CLI to test the snake you write.
-It is a go program and is easy to download and install on your computer [follwing these instructions](https://github.com/BattlesnakeOfficial/rules/tree/main/cli).
+It is a go program and is easy to download and install on your computer [following these instructions](https://github.com/BattlesnakeOfficial/rules/tree/main/cli).
 
 ## Hosting
 
@@ -48,7 +48,7 @@ My Dockerfile above was copied from the [Rust battlesnake starter project](https
 
 There are [official starter projects](https://docs.battlesnake.com/starter-projects#official-templates) for battlesnake for Python, Go, Rust, TypeScript, and JavaScript.
 There are also starter projects from the community for many other languages.
-These projects include many of the fiddly details of getting the webserver setup so you can jump right into programing your snake's ai.
+These projects include many of the fiddly details of getting the webserver setup so you can jump right into programming your snake's ai.
 
 ## 4 Possible Moves
 

@@ -22,3 +22,9 @@ repos:
     rev: 23.3.0
     hooks:
       - id: black
+
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.2.6
+    hooks:
+      - id: codespell
+        args: ['--write-changes', '--ignore-words=.codespell_words']

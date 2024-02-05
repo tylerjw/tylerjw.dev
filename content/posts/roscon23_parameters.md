@@ -26,7 +26,7 @@ tags = ["Talks"]
 
 The slides for this presentation were generated using a python library called [Elsie](https://spirali.github.io/elsie/).
 This is my second presentation I've created using this library and I am a huge fan.
-Here is a small snippet from the source of this presntation showing how I defined the header of each slide and the layout of the slides with code blocks.
+Here is a small snippet from the source of this presentation showing how I defined the header of each slide and the layout of the slides with code blocks.
 
 ```python
 def logo_header_slide(parent: Box, title: str):

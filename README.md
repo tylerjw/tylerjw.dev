@@ -18,11 +18,11 @@ sudo apt install inkscape inotify-tools
 ```
 
 Python
-0. Create virtual enviroment
+0. Create virtual environment
 ```bash
 python3 -m venv .venv
 ```
-1. Activate virtual enviroment
+1. Activate virtual environment
 ```bash
 source .venv/bin/activate
 ```

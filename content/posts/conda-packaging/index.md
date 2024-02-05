@@ -29,8 +29,8 @@ https://github.com/PickNikRobotics/cpp_polyfills/pull/2
 * Package management tool that aims to give a `cargo` like experience.
 * Written in Rust, takes a `pixi.toml` config file
 * Install dependencies and generate lock files
-* Create shell enviroment with dependencies
-* Create `tasks`, aliases for scripts run in the shell enviroment
+* Create shell environment with dependencies
+* Create `tasks`, aliases for scripts run in the shell environment
 * Upload packages to prefix.dev or another channel
 * Building packages is an [open pr](https://github.com/prefix-dev/pixi/pull/85)
 
