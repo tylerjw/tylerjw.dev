@@ -27,7 +27,7 @@ It is also better for our projects.
 Homogeneous projects may feel more comfortable.
 The fear of *the other* and the desire for comfort is the underlying motivations in these statements.
 
-Programming is a craft and the qualtiy of the outcome of our work is improved by working together from different perspectives.
+Programming is a craft and the quality of the outcome of our work is improved by working together from different perspectives.
 C++, the projects built in it, and the programmers who use it have value.
 Rust brings new ideas and new perspectives and building a bridge within our projects can lead to code-bases that are better than they were as homogeneous projects.
 
@@ -62,7 +62,7 @@ For C++ to call Rust functions that take Rust objects as arguments we need a way
 To do this we must create Rust objects and leak pointers to them to the C++ code.
 We also include functions in Rust that can destruct these objects given a pointer to one.
 From these two building blocks we can use a C++ class which holds the opaque pointers and manages freeing them using the C++ destructor.
-One important reason this is necisary is that allocators and deallocators come in pairs.
+One important reason this is necessary is that allocators and deallocators come in pairs.
 It is not valid to destruct a Rust object with the C++ deallocator or vice-versa.
 
 In cases where we need to create C++ library types from Rust library types such as creating a `Eigen::Isometry3d` from a `nalgebra::geometry::Isometry3` we must copy the underlying data instead of sharing the memory.
