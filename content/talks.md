@@ -2,6 +2,10 @@
 title = "Talks"
 +++
 
+## 2024
+
+- [Boulder Rust - C++ Rust Interop](/posts/rust-cpp-interop)
+
 ## 2023
 
 - [ROSCON - Paramters Should be Boring](/posts/roscon23-parameters)
