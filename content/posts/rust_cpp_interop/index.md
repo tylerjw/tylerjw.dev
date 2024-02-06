@@ -292,3 +292,4 @@ To trust all this unsafe C++ and Rust code we should write tests that exercise a
 
 - [The Rustnomicon](https://doc.rust-lang.org/nomicon/) -- The dark arts of unsafe Rust
 - [kylec/optick](https://github.com/kylc/optik) -- Rust IK solver with C++ and Rust bindings
+- [Google investing in Interoperability Between Rust and C++](https://security.googleblog.com/2024/02/improving-interoperability-between-rust-and-c.html?m=1)
