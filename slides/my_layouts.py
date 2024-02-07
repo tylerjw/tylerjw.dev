@@ -27,11 +27,12 @@ def n_empty_trailing(input: str):
     return 0
 
 
-def init_deck():
+def init_deck(font="Lato"):
     slides = elsie.SlideDeck(width=1920, height=1080)
-    slides.update_style("default", elsie.TextStyle(font="Lato", align="left", size=64))
+    slides.update_style("default", elsie.TextStyle(font=font, align="left", size=64))
     slides.update_style("code", elsie.TextStyle(size=38))
     slides.set_style("link", elsie.TextStyle(color="blue"))
+    slides.set_style("grayed_text", elsie.TextStyle(color="gray"))
     grayed = slides.get_style("code")
     grayed.color = "gray"
     slides.set_style("grayed", grayed)
@@ -45,9 +46,13 @@ def page_numbering(slides: elsie.SlideDeck):
         )
 
 
-def render_deck(slides: elsie.SlideDeck, filename: str):
+def render_deck(
+    slides: elsie.SlideDeck,
+    filename: str,
+    page_numbering_func: callable = page_numbering,
+):
     slides.render(
-        get_static_path("pdf/" + filename), slide_postprocessing=page_numbering
+        get_static_path("pdf/" + filename), slide_postprocessing=page_numbering_func
     )
 
 
@@ -59,12 +64,26 @@ def logo_header_slide(parent: Box, title: str):
     return parent.fbox(name="content", p_left=20, p_right=20)
 
 
+def text_slide(parent: Box, title: str):
+    content = logo_header_slide(parent, title)
+    content = content.fbox(horizontal=True, p_top=20, p_bottom=20)
+    return content.fbox(name="text_area", width="50%")
+
+
 def image_slide(parent: Box, title: str, image_path: str):
     content = logo_header_slide(parent, title)
     content = content.fbox(horizontal=True, p_top=20, p_bottom=20)
     text_area = content.fbox(name="text_area", width="50%")
     content.sbox(name="image", width="fill").image(image_path)
     return text_area
+
+
+def full_image_slide(parent: Box, title: str, image_path: str):
+    content = logo_header_slide(parent, title)
+    content = content.fbox(
+        horizontal=True, p_top=0, p_bottom=100, p_left=100, p_right=100
+    )
+    content.sbox(name="image", width="fill").image(image_path)
 
 
 def section_title_slide(parent: Box, title: str, subtitle: str):
