@@ -30,11 +30,6 @@ def title(slide):
 
 
 @slides.slide(debug_boxes=False)
-def kart(slide):
-    full_image_slide(slide, "Kart Racer", get_image_path("kart.jpg"))
-
-
-@slides.slide(debug_boxes=False)
 def author(slide):
     text_area = text_slide(slide, "Tyler Weaver")
     lst = unordered_list(text_area)
@@ -42,6 +37,14 @@ def author(slide):
     lst.item().text("Rust Cult Member")
     lst.item().text("Open-source Robotcist")
     lst.item().text("Wrote a Rust Library with C++ Bindings")
+
+
+@slides.slide(debug_boxes=False)
+def prefix(slide):
+    text_area = text_slide(slide, "Prefix")
+    lst = unordered_list(text_area)
+    lst.item().text("No AI generation tools were used")
+    lst.item().text("Slides and more at ~link{tylerjw.dev}")
 
 
 @slides.slide(debug_boxes=False)
