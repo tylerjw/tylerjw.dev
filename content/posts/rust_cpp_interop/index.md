@@ -204,10 +204,8 @@ First we must create the Rust FFI interface to this function:
 use std::ffi::{c_double, c_uint};
 
 #[repr(C)]
-struct RawVecDouble {
-    ptr: *mut c_double,
-    length: usize,
-    capacity: usize,
+struct Mat4d {
+    data: [c_double; 16],
 }
 
 #[no_mangle]
@@ -215,68 +213,51 @@ extern "C" fn robot_joint_calculate_transform(
     joint: *const Joint,
     variables: *const c_double,
     size: c_uint,
-) -> RawVecDouble {
+) -> Mat4d {
     unsafe {
         let joint = joint.as_ref().expect("Invalid pointer to Joint");
         let variables = std::slice::from_raw_parts(variables, size as usize);
         let transform = joint.calculate_transform(variables);
-        let transform = transform.to_matrix().data.as_slice().to_vec();
-        let length = transform.len();
-        let capacity = transform.capacity();
-        RawVecDouble {
-            ptr: transform.leak().as_mut_ptr(),
-            length,
-            capacity,
+        Mat4d {
+            data: transform.to_matrix().as_slice().try_into().unwrap(),
         }
-    }
-}
-
-#[no_mangle]
-extern "C" fn vector_free(vector: RawVecDouble) {
-    unsafe {
-        drop(Vec::<f64>::from_raw_parts(
-            vector.ptr,
-            vector.length,
-            vector.capacity,
-        ));
     }
 }
 ```
 
 C types we need for parameters come from the [ffi module](https://doc.rust-lang.org/std/ffi/index.html) in the Rust standard library.
 Before calling the rust `calculate_transform` we first need to construct the Rust types from the parameters.
-At the point of return we leak the memory as a mutable raw pointer.
+
+One interesting thing here is we use an the [undocumented fact that thin pointers can be used in ffi](https://github.com/rust-lang/nomicon/issues/23).
+A sized slice is a thin pointer in that it does not store the size at runtime.
+By placing a sized slice in a struct and setting the memory representation to be "C" we can return it by value.
 
 Then we can write a C++ function that calls the C functions:
 ```C++
-extern "C" {
-struct RawVecDouble {
-    double* ptr;
-    size_t length;
-    size_t capacity;
+struct Mat4d {
+  double data[16];
 };
 
-extern const double* robot_joint_calculate_transform(const robot_joint::rust::Joint*, const double*, unsigned int);
-extern void vector_free(const RawVecDouble*);
+extern "C" {
+extern struct Mat4d robot_joint_calculate_transform(
+    const robot_joint::rust::Joint*, const double*, unsigned int);
 }
 
 namespace robot_joint {
 Eigen::Isometry3d Joint::calculate_transform(const Eigen::VectorXd& variables)
 {
-    const auto data = robot_joint_calculate_transform(joint_, variables.data(), variables.size());
-    Eigen::Isometry3d t;
-    t.matrix() = Eigen::Map<Eigen::Matrix4d>(data.ptr);
-    vector_free(data);
-    return t;
+    const auto rust_isometry = robot_joint_calculate_transform(
+        joint_, variables.data(), variables.size());
+    Eigen::Isometry3d transform;
+    transform.matrix() = Eigen::Map<Eigen::Matrix4d>(std::move(rust_isometry.data));
+    return transform;
 }
 }  // namespace robot_joint
 ```
 
 This approach involves several type conversions.
-I first convert the Rust `Isometry3` type into a rust `Vec` then I store the details of the vector in a struct `RawVecDouble` and return that through my C interface.
-The C++ code receives this pointer and constructs an Eigen type by copying data pointed to.
-This is possible because both the Rust `Isometry3` and C++ `Isometry3d` types are backed by a column major 4x4 matrix of doubles.
-Lastly, I call a rust function to free the vector.
+The Rust Mat4d type that is returned from `robot_joint_calculate_transform` contains a fixed size array of sixteen doubles.
+Using this array we can type-cast into a 4x4 Eigen matrix and assign that into a `Isometry3d` which we then return.
 
 ## Conclusion
 
