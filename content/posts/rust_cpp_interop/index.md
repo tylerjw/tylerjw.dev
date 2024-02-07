@@ -255,7 +255,6 @@ Eigen::Isometry3d Joint::calculate_transform(const Eigen::VectorXd& variables)
 }  // namespace robot_joint
 ```
 
-This approach involves several type conversions.
 The Rust Mat4d type that is returned from `robot_joint_calculate_transform` contains a fixed size array of sixteen doubles.
 Using this array we can type-cast into a 4x4 Eigen matrix and assign that into a `Isometry3d` which we then return.
 
