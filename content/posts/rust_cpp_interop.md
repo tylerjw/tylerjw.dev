@@ -5,7 +5,7 @@ type = "post"
 description = "Together We Are Better"
 in_search_index = true
 [taxonomies]
-tags = ["Talks"]
+tags = ["Talks", "Rust", "C++"]
 +++
 
 ### A Collective Craft
