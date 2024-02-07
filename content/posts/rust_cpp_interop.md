@@ -257,17 +257,17 @@ struct Mat4d {
 
 extern "C" {
 extern struct Mat4d robot_joint_calculate_transform(
-    const robot_joint::rust::Joint*, const double*, unsigned int);
+  const robot_joint::rust::Joint*, const double*, unsigned int);
 }
 
 namespace robot_joint {
 Eigen::Isometry3d Joint::calculate_transform(const Eigen::VectorXd& variables)
 {
-    const auto rust_isometry = robot_joint_calculate_transform(
-        joint_, variables.data(), variables.size());
-    Eigen::Isometry3d transform;
-    transform.matrix() = Eigen::Map<Eigen::Matrix4d>(rust_isometry.data);
-    return transform;
+  const auto rust_isometry = robot_joint_calculate_transform(
+    joint_, variables.data(), variables.size());
+  Eigen::Isometry3d transform;
+  transform.matrix() = Eigen::Map<Eigen::Matrix4d>(rust_isometry.data);
+  return transform;
 }
 }  // namespace robot_joint
 ```
