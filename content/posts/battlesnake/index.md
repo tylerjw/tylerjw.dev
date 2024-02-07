@@ -129,7 +129,7 @@ impl Move {
 You will notice that I return an Option type from both of these as there are are invalid inputs and in those cases I just return `None`.
 This enables me to use functions like `flat_map` to convert a vector of moves to coordinates and skip the ones that are invalid.
 
-## 🔗The world is finite; don't leave it
+## The world is finite; don't leave it
 
 In the standard game the board is 11 by 11 in size.
 We need to be careful that we do not drive our snake off the end of the world.
