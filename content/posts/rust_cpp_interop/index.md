@@ -79,8 +79,8 @@ As the C++ code at my work uses CMake, I will link to an example showing how to 
 
 I will separate my project into two Rust crates (packages) for code layout.
 
-- `robot_joint` -- Rust library I want to use from C++
-- `robot_joint-cpp` -- C++ interop layer
+- `robot_joint` -- Rust library I want to use from C++ (what you have)
+- `robot_joint-cpp` -- C++ interop layer (what you want to write)
 
 ## Custom Opaque Types
 
@@ -237,7 +237,7 @@ extern "C" fn robot_joint_calculate_transform(
 ```
 
 C types we need for parameters come from the [ffi module](https://doc.rust-lang.org/std/ffi/index.html) in the Rust standard library.
-Before calling the rust `calculate_transform`, we first need to construct the Rust types from the parameters.
+Before calling the rust `calculate_transform`, we must first construct the Rust types from the parameters.
 
 Interestingly, we use an [undocumented fact that thin pointers can be utilized in ffi](https://github.com/rust-lang/nomicon/issues/23).
 A sized slice is a thin pointer that does not store the size at runtime.
