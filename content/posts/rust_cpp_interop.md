@@ -145,7 +145,7 @@ class Joint {
     Joint& operator=(Joint&& other);
 
   private:
-    rust::Joint joint_ = nullptr;
+    rust::Joint* joint_ = nullptr;
 };
 
 }  // namespace robot_joint
