@@ -31,6 +31,8 @@ Programming is a craft, and the quality of the outcome of our work is improved b
 C++, the projects built in it, and the programmers who use it have value.
 Rust brings new ideas and perspectives, and building a bridge within our projects can lead to better codebases than they were as homogeneous projects.
 
+{{ img_caption(path="/images/GoldenGateBridge.jpg", caption="Golden Gate Bridge") }}
+
 Writing software is a team sport where we want to welcome a diversity of ideas and approaches to find the best solutions to any given problem.
 Even if you wanted to rewrite a large C++ project into Rust, that is unlikely to be possible given project timelines and the makeup of your team.
 If you have a C++ codebase, you likely have C++ programmers as coworkers, and building a bridge will make you more likely to win their support.
@@ -51,6 +53,8 @@ In Rust I wanted to use [nalgebra](https://docs.rs/nalgebra/latest/nalgebra/) ty
 
 [OptIk](https://github.com/kylc/optik) is the project I learned much of this from.
 Look at it for a complete example.
+
+{{ img_caption(path="/images/Zakimbridge.jpg", caption="Leonard P. Zakim Bunker Hill Memorial Bridge, Boston") }}
 
 ### System Design
 
@@ -73,6 +77,8 @@ This is because, in C++, we cannot extend a library type to handle the destructi
 In the particular case of the Rust homogeneous transform type `nalgebra::geometry::Isometry3`, the underlying data is a 4x4 matrix of doubles represented by a single array of 16 doubles.
 A fixed-size array is something that we can pass across the FFI boundary.
 We'll take advantage of this to avoid making extra copies or allocations.
+
+{{ img_caption(path="/images/Fremont_Bridge_Portland_Oregon.jpg", caption="Fremont Bridge") }}
 
 There is a concern about how we integrate with a C++ build system.
 As the C++ code at my work uses CMake, I will link to an example showing how to make this C++ project consumable by other CMake projects.
@@ -274,6 +280,8 @@ We can type-cast a 4x4 Eigen matrix using this array and assign it to an `Isomet
 Building a bridge that creates excellent C++ and Rust interfaces is more straightforward than many think.
 You will likely have more trouble convincing your C++-loving coworkers to let you write code in Rust than doing the interop.
 
+{{ img_caption(path="/images/Redcliff_bridge_2006.jpg", caption="Red Cliff Bridge") }}
+
 ### Future Work
 
 Code without tests should be considered broken.
@@ -292,3 +300,7 @@ The significant upside is that I can reduce the amount of manually written unsaf
 - [cxx](https://cxx.rs/) -- Safe interop between Rust and C++
 - [bindgen](https://rust-lang.github.io/rust-bindgen/) -- generate Rust FFI bindings to C/C++ libraries
 - [cbindgen](https://github.com/mozilla/cbindgen) -- generate C/C++11 headers for Rust libraries which expose a public C API
+- [Golden Gate Bridge](https://en.wikipedia.org/wiki/Golden_Gate_Bridge) -- wikipedia
+- [Leonard P. Zakim Bunker Hill Memorial Bridge](https://en.wikipedia.org/wiki/Leonard_P._Zakim_Bunker_Hill_Memorial_Bridge) -- wikipedia
+- [Freemont Bridge](https://en.wikipedia.org/wiki/Fremont_Bridge_(Portland,_Oregon)) -- wikipedia
+- [Red Cliff Bridge](https://en.wikipedia.org/wiki/Red_Cliff_Bridge) -- wikipedia
