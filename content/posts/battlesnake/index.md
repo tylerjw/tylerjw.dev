@@ -5,7 +5,7 @@ type = "post"
 description = "Battlesnake"
 in_search_index = true
 [taxonomies]
-tags = ["Talks"]
+tags = ["Rust"]
 +++
 
 [Battlesnake](https://play.battlesnake.com/) is a competitive multiplayer game where your code is the controller.

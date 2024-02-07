@@ -5,7 +5,7 @@ type = "post"
 description = "XML vs Python"
 in_search_index = true
 [taxonomies]
-tags = ["Talks"]
+tags = ["Talks", "ROSCON"]
 +++
 
 - [PDF of Slides](/pdf/xml_launch.pdf)

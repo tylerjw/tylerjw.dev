@@ -5,7 +5,7 @@ type = "post"
 description = "generate_parameter_library"
 in_search_index = true
 [taxonomies]
-tags = ["Talks"]
+tags = ["Talks", "ROSCON"]
 +++
 
 - [Slides PDF](/pdf/roscon23_parameters.pdf)
