@@ -74,6 +74,77 @@ def why(slide):
 
 
 @slides.slide(debug_boxes=False)
+def why(slide):
+    text_area = text_slide(slide, "After Action Report")
+    text_area.sbox(p_bottom=40).text(
+        "Coworker wrote this about writing a Rust project.",
+        style=elsie.TextStyle(align="middle", bold=True),
+    )
+    lst = unordered_list(text_area.box())
+    lst.item().text("It was quick! (2 engineers took 5 days)")
+    lst.item().text("Cargo was a pleasure to work with.")
+    lst.item().text(
+        "It really helps focusing on the code instead\n  of dependencies / build rules."
+    )
+    lst.item().text("Going back to cmake / ament feels miserable.")
+    lst.item().text("Builds are super quick.")
+    lst.item().text("Compiler errors are helpful.")
+    lst.item().text("Great vscode integration.")
+    lst.item().text("Safe, modern and efficient at the core.")
+
+@slides.slide(debug_boxes=False)
+def first_class_types(slide):
+    code_bg = "#EAEAEA"
+    text_area = text_slide(slide, "Is this Possible?")
+    text_area.sbox(p_bottom=40).text(
+        "Rust",
+        style=elsie.TextStyle(align="middle", bold=True),
+    )
+    code_block_1 = text_area.sbox(
+        name="code_block_1",
+        width="100%",
+        z_level=-1,
+    )
+    code_block_1.rect(bg_color=code_bg, rx=20, ry=20)
+    code_block_1.box(
+        z_level=0,
+        p_left=20,
+        p_right=20,
+        p_top=20,
+        p_bottom=20,
+        width="100%"
+    ).code(
+        "Rust",
+        """let joint = Joint::new();
+let transform = joint.calculate_transform(&[1.5]);
+""",
+    )
+    text_area.sbox(p_top=60, p_bottom=40).text(
+        "C++",
+        style=elsie.TextStyle(align="middle", bold=True),
+    )
+
+    code_block_2 = text_area.sbox(
+        name="code_block_2",
+        width="100%",
+        z_level=-1,
+    )
+    code_block_2.rect(bg_color=code_bg, rx=20, ry=20)
+    code_block_2.box(
+        z_level=0,
+        p_left=20,
+        p_right=20,
+        p_top=20,
+        p_bottom=20,
+        width="100%"
+    ).code(
+        "C++",
+        """Joint joint();
+Eigen::Isometry3d transform = joint.calculate_transform(Eigen::VectorXd({1.5}));
+""",
+    )
+
+@slides.slide(debug_boxes=False)
 def bridge(slide):
     full_image_slide(
         slide, "Golden Gate Bridge", get_image_path("GoldenGateBridge.jpg")
@@ -113,25 +184,41 @@ def layout(slide):
         "Project Layout",
         "",
         """├── Cargo.toml
-├── crates
-│   ├── robot_joint
-│   │   ├── Cargo.toml
-│   │   └── src
-│   │       └── lib.rs
-│   └── robot_joint-cpp
-│       ├── Cargo.toml
-│       ├── CMakeLists.txt
-│       ├── cmake
-│       │   └── robot_jointConfig.cmake.in
-│       ├── include
-│       │   └── robot_joint.hpp
-│       └── src
-│           ├── lib.cpp
-│           └── lib.rs
-└── README.md
+├── README.md
+└── crates
+    ├── robot_joint
+    │   ├── Cargo.toml
+    │   └── src
+    │       └── lib.rs
 """,
     )
 
+
+@slides.slide(debug_boxes=False)
+def layout(slide):
+    code_slide(
+        slide,
+        "Project Layout",
+        "",
+        """├── Cargo.toml
+├── README.md
+└── crates
+    ├── robot_joint
+    │   ├── Cargo.toml
+    │   └── src
+    │       └── lib.rs
+    └── robot_joint-cpp
+        ├── Cargo.toml
+        ├── CMakeLists.txt
+        ├── cmake
+        │   └── robot_jointConfig.cmake.in
+        ├── include
+        │   └── robot_joint.hpp
+        └── src
+            ├── lib.cpp
+            └── lib.rs
+""",
+    )
 
 @slides.slide(debug_boxes=False)
 def bridge(slide):
