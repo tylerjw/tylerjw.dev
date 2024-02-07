@@ -8,6 +8,10 @@ in_search_index = true
 tags = ["Talks", "Rust", "C++"]
 +++
 
+This is a blog post covering the content I prepared for the [Boulder Rust Meetup](https://www.meetup.com/boulder-rust-meetup/).
+
+- [Slides PDF](/pdf/rust_cpp_interop.pdf)
+
 ### A Collective Craft
 
 Before we talk about how we must discuss why.
@@ -293,6 +297,7 @@ The significant upside is that I can reduce the amount of manually written unsaf
 
 ### References
 
+- [Slides PDF](/pdf/rust_cpp_interop.pdf)
 - [The Rustnomicon](https://doc.rust-lang.org/nomicon/) -- The dark arts of unsafe Rust
 - [kylec/optick](https://github.com/kylc/optik) -- Rust IK solver with C++ and Rust bindings
 - [Google investing in Interoperability Between Rust and C++](https://security.googleblog.com/2024/02/improving-interoperability-between-rust-and-c.html?m=1)
