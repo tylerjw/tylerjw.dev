@@ -8,7 +8,7 @@ in_search_index = true
 tags = ["Talks"]
 +++
 
-## A Collective Craft
+### A Collective Craft
 
 Before we talk about how we must discuss why.
 I will presume these things:
@@ -35,7 +35,7 @@ Writing software is a team sport where we want to welcome a diversity of ideas a
 Even if you wanted to rewrite a large C++ project into Rust, that is unlikely to be possible given project timelines and the makeup of your team.
 If you have a C++ codebase, you likely have C++ programmers as coworkers, and building a bridge will make you more likely to win their support.
 
-## Code Generation
+### Code Generation
 
 A handful of well-known projects aim to automate creating bridges to and from C++.
 
@@ -47,12 +47,12 @@ Due to my desire to create interfaces involving library types in Rust and C++ th
 At PickNik we write robotics code and much of C++ code uses [Eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page) types.
 In Rust I wanted to use [nalgebra](https://docs.rs/nalgebra/latest/nalgebra/) types to represent the same concepts.
 
-## On the Shoulders of Giants
+### On the Shoulders of Giants
 
 [OptIk](https://github.com/kylc/optik) is the project I learned much of this from.
 Look at it for a complete example.
 
-## System Design
+### System Design
 
 Interop to C++ is done via the classic hourglass approach.
 We bridge the Rust library to C and create C++ types that safely use the C interface.
@@ -82,7 +82,7 @@ I will separate my project into two Rust crates (packages) for code layout.
 - `robot_joint` -- Rust library I want to use from C++ (what you have)
 - `robot_joint-cpp` -- C++ interop layer (what you want to write)
 
-## Custom Opaque Types
+### Custom Opaque Types
 
 Given this Rust struct and factory function, we must create a C interface.
 ```rust
@@ -191,7 +191,7 @@ Here is a complete example with all the various moving parts from Kyle's OptIk l
 - [cmake/optikConfig.cmake.in](https://github.com/kylc/optik/blob/ea584bfea4c702e52039d2cb09536a9513414121/crates/optik-cpp/cmake/optikConfig.cmake.in#L1) - rename this file appropriately for your project
 - [examples/CMakeLists.txt](https://github.com/kylc/optik/blob/ea584bfea4c702e52039d2cb09536a9513414121/examples/CMakeLists.txt#L1) - how to consume from downstream CMake project
 
-## First-class Library Types
+### First-class Library Types
 
 Remember, I said I took the manual approach because I wanted an interface with `Eigen` types on the C++ side.
 Here is a simple example of how to accomplish that.
@@ -269,12 +269,12 @@ Eigen::Isometry3d Joint::calculate_transform(const Eigen::VectorXd& variables)
 The Rust `Mat4d` type returned from `robot_joint_calculate_transform` contains a fixed-size array of sixteen doubles.
 We can type-cast a 4x4 Eigen matrix using this array and assign it to an `Isometry3d`, which we then return.
 
-## Conclusion
+### Conclusion
 
 Building a bridge that creates excellent C++ and Rust interfaces is more straightforward than many think.
 You will likely have more trouble convincing your C++-loving coworkers to let you write code in Rust than doing the interop.
 
-## Future Work
+### Future Work
 
 Code without tests should be considered broken.
 To trust all this unsafe C++ and Rust code, we should write tests that exercise all the code paths and run them with sanitizers.
@@ -283,7 +283,7 @@ In a future post, I'll show you how to use the excellent C++ Catch2 library to t
 I also want to explore the idea of relying primarily on the cxx crate for interop and building a C++ interface or extending the macros to handle types like `Isometry3`.
 The significant upside is that I can reduce the amount of manually written unsafe code.
 
-## References
+### References
 
 - [The Rustnomicon](https://doc.rust-lang.org/nomicon/) -- The dark arts of unsafe Rust
 - [kylec/optick](https://github.com/kylc/optik) -- Rust IK solver with C++ and Rust bindings
