@@ -51,7 +51,7 @@ def prefix(slide):
 def why(slide):
     text_area = text_slide(slide, "What Are We Going To Cover")
     lst = unordered_list(text_area)
-    lst.item().text("Social Objectsions to Rust")
+    lst.item().text("Social Objections to Rust")
     lst.item().text("Details of Interop")
     lst.item().text("Examples of Useful Patterns")
     lst.item().text("Code Generation Tools")
@@ -397,7 +397,7 @@ def so_what(slide):
 def creddits(slide):
     text_area = text_slide(slide, "Attribution")
     text_area.sbox(p_bottom=40).text(
-        "Kyle's OptIk\n" "~link{github.com/kylc/optik}",
+        "Kyle Cesare's OptIk\n" "~link{github.com/kylc/optik}",
         style=elsie.TextStyle(align="middle", bold=True),
     )
 
