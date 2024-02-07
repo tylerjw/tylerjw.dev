@@ -50,7 +50,7 @@ In Rust I wanted to use [nalgebra](https://docs.rs/nalgebra/latest/nalgebra/) ty
 ## On the Shoulders of Giants
 
 [OptIk](https://github.com/kylc/optik) is the project I learned much of this from.
-Look at it for a complete example of these techniques.
+Look at it for a complete example.
 
 ## System Design
 
