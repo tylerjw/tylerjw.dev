@@ -260,7 +260,7 @@ Eigen::Isometry3d Joint::calculate_transform(const Eigen::VectorXd& variables)
     const auto rust_isometry = robot_joint_calculate_transform(
         joint_, variables.data(), variables.size());
     Eigen::Isometry3d transform;
-    transform.matrix() = Eigen::Map<Eigen::Matrix4d>(std::move(rust_isometry.data));
+    transform.matrix() = Eigen::Map<Eigen::Matrix4d>(rust_isometry.data);
     return transform;
 }
 }  // namespace robot_joint
