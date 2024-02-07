@@ -58,6 +58,8 @@ Interop to C++ is done via the classic hourglass approach.
 We bridge the Rust library to C and create C++ types that safely use the C interface.
 This is the same way interop to other languages such as Python works.
 
+{{ img_caption(path="/images/hourglass_rust_cpp.png", caption="Hourglass Pattern") }}
+
 We need a way for C++ to have those Rust objects to call Rust functions that take Rust objects as arguments.
 We must create Rust objects and leak pointers to the C++ code to do this.
 We also include functions in Rust that can destroy these objects, given a pointer to one.
