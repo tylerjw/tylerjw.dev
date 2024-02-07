@@ -22,7 +22,7 @@ Here are some that I have heard:
 
 > Using one language makes the project more accessible for everyone. Using multiple languages will make it harder for me to contribute. If we write it in Rust, it will make hiring people to work on this project challenging.
 
-Research has demonstrated that [diversity leads to better business outcomes](https://www.mckinsey.com/capabilities/people-and-organizational-performance/our-insights/why-diversity-matters).
+Research has demonstrated that [diversity leads to better outcomes](https://www.mckinsey.com/capabilities/people-and-organizational-performance/our-insights/why-diversity-matters).
 It is also better for our projects.
 The underlying sentiment in these statements is the fear of *the other*.
 Instead of criticizing coworkers for their fear, I have found it helpful to focus on how building a heterogeneous codebase can lead to a better project.
