@@ -31,7 +31,7 @@ Programming is a craft, and the quality of the outcome of our work is improved b
 C++, the projects built in it, and the programmers who use it have value.
 Rust brings new ideas and perspectives, and building a bridge within our projects can lead to better codebases than they were as homogeneous projects.
 
-{{ img_caption(path="/images/GoldenGateBridge.jpg", caption="Golden Gate Bridge") }}
+{{ img_caption(path="/images/GoldenGateBridge.jpg", caption="Golden Gate Bridge, San Francisco") }}
 
 Writing software is a team sport where we want to welcome a diversity of ideas and approaches to find the best solutions to any given problem.
 Even if you wanted to rewrite a large C++ project into Rust, that is unlikely to be possible given project timelines and the makeup of your team.
@@ -78,7 +78,7 @@ In the particular case of the Rust homogeneous transform type `nalgebra::geometr
 A fixed-size array is something that we can pass across the FFI boundary.
 We'll take advantage of this to avoid making extra copies or allocations.
 
-{{ img_caption(path="/images/Fremont_Bridge_Portland_Oregon.jpg", caption="Fremont Bridge") }}
+{{ img_caption(path="/images/Fremont_Bridge_Portland_Oregon.jpg", caption="Fremont Bridge, Portland") }}
 
 There is a concern about how we integrate with a C++ build system.
 As the C++ code at my work uses CMake, I will link to an example showing how to make this C++ project consumable by other CMake projects.
@@ -302,5 +302,5 @@ The significant upside is that I can reduce the amount of manually written unsaf
 - [cbindgen](https://github.com/mozilla/cbindgen) -- generate C/C++11 headers for Rust libraries which expose a public C API
 - [Golden Gate Bridge](https://en.wikipedia.org/wiki/Golden_Gate_Bridge) -- wikipedia
 - [Leonard P. Zakim Bunker Hill Memorial Bridge](https://en.wikipedia.org/wiki/Leonard_P._Zakim_Bunker_Hill_Memorial_Bridge) -- wikipedia
-- [Freemont Bridge](https://en.wikipedia.org/wiki/Fremont_Bridge_(Portland,_Oregon)) -- wikipedia
+- [Fremont Bridge](https://en.wikipedia.org/wiki/Fremont_Bridge_(Portland,_Oregon)) -- wikipedia
 - [Red Cliff Bridge](https://en.wikipedia.org/wiki/Red_Cliff_Bridge) -- wikipedia
