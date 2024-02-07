@@ -1,5 +1,5 @@
 +++
-title = "Boulder Rust - C++ Interop"
+title = "Boulder Rust Meetup - C++ Interop"
 date = 2024-02-04
 type = "post"
 description = "Together We Are Better"

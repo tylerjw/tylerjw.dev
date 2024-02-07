@@ -4,7 +4,7 @@ title = "Talks"
 
 ## 2024
 
-- [Boulder Rust - C++ Rust Interop](/posts/rust-cpp-interop)
+- [Boulder Rust Meetup - C++ Interop](/posts/rust-cpp-interop)
 
 ## 2023
 
