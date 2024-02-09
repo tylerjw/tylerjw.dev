@@ -170,7 +170,7 @@ install(FILES "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
 
 install(FILES include/<lib-name>.hpp DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 ```
-Next comes the grossest part of this whole thing. This is needed so the CMake target we are creating is consumable by other CMake projects. To use this, copy-paste it and replace all the occurrences of `<lib-name>` with your project's name. You'll also need the file `crates/<lib-name>-cpp/cmake/<lib-name>Config.cmake.in` shown below:
+Next comes the most magical part of this whole thing. If I'm being honest, I copy-paste this from project to project without understanding it. This is needed so the CMake target we are creating is consumable by other CMake projects. To use this, copy-paste it and replace all the occurrences of `<lib-name>` with your project's name. You'll also need the file `crates/<lib-name>-cpp/cmake/<lib-name>Config.cmake.in` shown below.
 
 ```cmake
 @PACKAGE_INIT@
