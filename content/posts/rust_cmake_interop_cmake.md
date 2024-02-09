@@ -136,8 +136,8 @@ target_include_directories(
                 $<INSTALL_INTERFACE:include>)
 target_link_libraries(<lib-name> PUBLIC Eigen3::Eigen)
 target_link_libraries(<lib-name> PRIVATE <lib-name>cpp)
-set_property(TARGET julien PROPERTY CXX_STANDARD 20)
-set_property(TARGET julien PROPERTY POSITION_INDEPENDENT_CODE ON)
+set_property(TARGET <lib-name> PROPERTY CXX_STANDARD 20)
+set_property(TARGET <lib-name> PROPERTY POSITION_INDEPENDENT_CODE ON)
 ```
 Here, we tell CMake how to build our C++ library, where to find the header files, to link it with Eigen3::Eigen, and our rust library `<lib-name>cpp`.
 I'm using C++20, so I set that here.
