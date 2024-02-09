@@ -92,6 +92,7 @@ def why(slide):
     lst.item().text("Great vscode integration.")
     lst.item().text("Safe, modern and efficient at the core.")
 
+
 @slides.slide(debug_boxes=False)
 def first_class_types(slide):
     code_bg = "#EAEAEA"
@@ -107,12 +108,7 @@ def first_class_types(slide):
     )
     code_block_1.rect(bg_color=code_bg, rx=20, ry=20)
     code_block_1.box(
-        z_level=0,
-        p_left=20,
-        p_right=20,
-        p_top=20,
-        p_bottom=20,
-        width="100%"
+        z_level=0, p_left=20, p_right=20, p_top=20, p_bottom=20, width="100%"
     ).code(
         "Rust",
         """let joint = Joint::new();
@@ -131,18 +127,14 @@ let transform = joint.calculate_transform(&[1.5]);
     )
     code_block_2.rect(bg_color=code_bg, rx=20, ry=20)
     code_block_2.box(
-        z_level=0,
-        p_left=20,
-        p_right=20,
-        p_top=20,
-        p_bottom=20,
-        width="100%"
+        z_level=0, p_left=20, p_right=20, p_top=20, p_bottom=20, width="100%"
     ).code(
         "C++",
         """Joint joint();
 Eigen::Isometry3d transform = joint.calculate_transform(Eigen::VectorXd({1.5}));
 """,
     )
+
 
 @slides.slide(debug_boxes=False)
 def bridge(slide):
@@ -219,6 +211,7 @@ def layout(slide):
             └── lib.rs
 """,
     )
+
 
 @slides.slide(debug_boxes=False)
 def bridge(slide):
