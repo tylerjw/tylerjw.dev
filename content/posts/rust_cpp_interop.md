@@ -8,9 +8,8 @@ in_search_index = true
 tags = ["Talks", "Rust", "C++"]
 +++
 
-This is a blog post covering the content I prepared for the [Boulder Rust Meetup](https://www.meetup.com/boulder-rust-meetup/).
-
-- [Slides PDF](/pdf/rust_cpp_interop.pdf)
+{{ admonition(kind="note", body="This is a blog post covering the content I prepared for the [Boulder Rust Meetup](https://www.meetup.com/boulder-rust-meetup/).
+- [Slides PDF](/pdf/rust_cpp_interop.pdf)") }}
 
 ### A Collective Craft
 
