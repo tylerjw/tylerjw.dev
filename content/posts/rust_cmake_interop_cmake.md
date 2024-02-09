@@ -145,7 +145,6 @@ To make links with the Rust static library work, I enable `POSITION_INDEPENDENT_
 
 ### Install
 ```cmake
-# Install
 include(CMakePackageConfigHelpers)
 include(GNUInstallDirs)
 
