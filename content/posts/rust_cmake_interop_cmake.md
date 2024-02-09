@@ -46,7 +46,7 @@ I use a [cargo workspace](https://doc.rust-lang.org/book/ch14-03-cargo-workspace
    │   ├── Cargo.toml
    │   └── src
    │       └── lib.rs
-   └── <lib-name>
+   └── <lib-name>-cpp
        ├── Cargo.toml
        ├── CMakeLists.txt
        ├── cmake
