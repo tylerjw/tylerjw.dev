@@ -1,5 +1,5 @@
 +++
-title = "Rust/C++ Interop Part 2 - First-class CMake User Experience"
+title = "Rust/C++ Interop Part 2 - CMake"
 date = 2024-02-09
 type = "post"
 description = "Love Thy Neighbor"
