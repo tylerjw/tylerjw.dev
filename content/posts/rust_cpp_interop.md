@@ -1,5 +1,5 @@
 +++
-title = "Boulder Rust Meetup - C++ Interop"
+title = "Rust/C++ Interop Part 1 - Just the Basics"
 date = 2024-02-07
 type = "post"
 description = "Together We Are Better"
@@ -195,11 +195,7 @@ Joint::~Joint() {
 ```
 
 Lastly, the most challenging part is to make this compatible with CMake projects.
-Here is a complete example with all the various moving parts from Kyle's OptIk library.
-
-- [CMakeLists.txt](https://github.com/kylc/optik/blob/ea584bfea4c702e52039d2cb09536a9513414121/crates/optik-cpp/CMakeLists.txt#L1)
-- [cmake/optikConfig.cmake.in](https://github.com/kylc/optik/blob/ea584bfea4c702e52039d2cb09536a9513414121/crates/optik-cpp/cmake/optikConfig.cmake.in#L1) - rename this file appropriately for your project
-- [examples/CMakeLists.txt](https://github.com/kylc/optik/blob/ea584bfea4c702e52039d2cb09536a9513414121/examples/CMakeLists.txt#L1) - how to consume from downstream CMake project
+I wrote a [follow-on blog post about that subject](/posts/rust-cmake-interop-cmake).
 
 ### First-class Library Types
 
@@ -284,19 +280,21 @@ We can type-cast a 4x4 Eigen matrix using this array and assign it to an `Isomet
 Building a bridge that creates excellent C++ and Rust interfaces is more straightforward than many think.
 You will likely have more trouble convincing your C++-loving coworkers to let you write code in Rust than doing the interop.
 
-{{ img_caption(path="/images/Redcliff_bridge_2006.jpg", caption="Red Cliff Bridge") }}
-
-### Future Work
-
 Code without tests should be considered broken.
 To trust all this unsafe C++ and Rust code, we should write tests that exercise all the code paths and run them with sanitizers.
 In a future post, I'll show you how to use the excellent C++ Catch2 library to test your C++ bindings with addresses and undefined behavior sanitizers.
+I wrote a follow-on about [CMake Integration](/posts/rust-cmake-interop-cmake) to explain how to do just that.
+
+{{ img_caption(path="/images/Redcliff_bridge_2006.jpg", caption="Red Cliff Bridge") }}
+
+### Future Work
 
 I also want to explore the idea of relying primarily on the cxx crate for interop and building a C++ interface or extending the macros to handle types like `Isometry3`.
 The significant upside is that I can reduce the amount of manually written unsafe code.
 
 ### References
 
+- [Part 2: CMake Integration](/posts/rust-cmake-interop-cmake)
 - [Slides PDF](/pdf/rust_cpp_interop.pdf)
 - [The Rustnomicon](https://doc.rust-lang.org/nomicon/) -- The dark arts of unsafe Rust
 - [kylec/optick](https://github.com/kylc/optik) -- Rust IK solver with C++ and Rust bindings
