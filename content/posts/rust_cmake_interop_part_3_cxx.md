@@ -121,7 +121,7 @@ The `Display` implementation here makes a `to_string` function exist that we can
 
 Keen eyes will see a function I'm using here I haven't implemented yet. `convert::vec_from_isometry3` is a function that makes a `Vec<f64>` from an `Isometry3<f64>`. You'll see that next.
 
-### crates/robot_joint-cxx/src/lib.rs Part 2
+### crates/robot_joint-cxx/src/lib.rs Part 3
 ```rust
 mod convert {
     use nalgebra::{Isometry3, Matrix6xX};
