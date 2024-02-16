@@ -271,7 +271,10 @@ FetchContent_MakeAvailable(<lib-name>)
 target_link_libraries(mylib PRIVATE <lib-name>::<lib-name>)
 ```
 
+**Next:** [C++ Interop Part 3 - Cxx](/posts/rust-cmake-interop-part-3-cxx/)
+
 ## References:
+- [C++ Interop Part 1 - Just the Basics](/posts/rust-cpp-interop)
 - [Cargo Workspaces](https://doc.rust-lang.org/book/ch14-03-cargo-workspaces.html)
 - [CMake project command](https://cmake.org/cmake/help/latest/command/project.html)
 - [Corrosion](https://corrosion-rs.github.io/corrosion/)

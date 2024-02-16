@@ -274,7 +274,7 @@ Eigen::Isometry3d Joint::calculate_transform(const Eigen::VectorXd& variables)
 The Rust `Mat4d` type returned from `robot_joint_calculate_transform` contains a fixed-size array of sixteen doubles.
 We can type-cast a 4x4 Eigen matrix using this array and assign it to an `Isometry3d`, which we then return.
 
-### Conclusion
+# Conclusion
 
 Building a bridge that creates excellent C++ and Rust interfaces is more straightforward than many think.
 You will likely have more trouble convincing your C++-loving coworkers to let you write code in Rust than doing the interop.
@@ -286,14 +286,15 @@ I wrote a follow-on about [CMake Integration](/posts/rust-cmake-interop-cmake) t
 
 {{ img_caption(path="/images/Redcliff_bridge_2006.jpg", caption="Red Cliff Bridge") }}
 
-### Future Work
+## Future Work
 
 I also want to explore the idea of relying primarily on the cxx crate for interop and building a C++ interface or extending the macros to handle types like `Isometry3`.
 The significant upside is that I can reduce the amount of manually written unsafe code.
 
-### References
+**Next:** [C++ Interop Part 2 - CMake](/posts/rust-cmake-interop-cmake/)
 
-- [Part 2: CMake Integration](/posts/rust-cmake-interop-cmake)
+## References
+
 - [Slides PDF](/pdf/rust_cpp_interop.pdf)
 - [The Rustnomicon](https://doc.rust-lang.org/nomicon/) -- The dark arts of unsafe Rust
 - [kylec/optick](https://github.com/kylc/optik) -- Rust IK solver with C++ and Rust bindings
