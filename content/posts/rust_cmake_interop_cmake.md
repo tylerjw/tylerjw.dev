@@ -209,6 +209,26 @@ catch_discover_tests(tests)
 ```
 [Catch2](https://github.com/catchorg/Catch2?tab=readme-ov-file#what-is-catch2) is a beautiful, modern C++ testing framework. The docs explain how to write tests using it. The killer feature of having tests of your C++ interop library is that we can now build with linters and test for mistakes in our unsafe code.
 
+## static_assert the copy/move behavior
+
+Another helpful suggestion from [Kris van Rens](https://vanrens.org) was to use `static_assert` to statically assert the special function behavior of our Joint class.
+
+```c++
+#include <type_traits>
+
+#include "robot_joint.hpp"
+
+using namespace robot_joint;
+
+// Joint should be a move-only resource handle (tests will fail at build time).
+static_assert(std::is_nothrow_destructible_v<Joint>);
+static_assert(std::is_nothrow_default_constructible_v<Joint>);
+static_assert(!std::is_copy_constructible_v<Joint>);
+static_assert(!std::is_copy_assignable_v<Joint>);
+static_assert(std::is_nothrow_move_constructible_v<Joint>);
+static_assert(std::is_nothrow_move_assignable_v<Joint>);
+```
+
 # Building and Testing
 After all that boilerplate, we can now build our project using CMake.
 
@@ -275,6 +295,7 @@ target_link_libraries(mylib PRIVATE <lib-name>::<lib-name>)
 
 ## References:
 - [C++ Interop Part 1 - Just the Basics](/posts/rust-cpp-interop)
+- [Kris van Rens](https://vanrens.org)
 - [Cargo Workspaces](https://doc.rust-lang.org/book/ch14-03-cargo-workspaces.html)
 - [CMake project command](https://cmake.org/cmake/help/latest/command/project.html)
 - [Corrosion](https://corrosion-rs.github.io/corrosion/)

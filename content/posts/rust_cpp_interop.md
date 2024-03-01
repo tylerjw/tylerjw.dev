@@ -128,70 +128,72 @@ Lastly, `drop(Box::from_raw)` is a way to take a pointer, convert it back into a
 
 Next, we create a C++ header `robot_joint.hpp`.
 ```C++
-namespace robot_joint {
-namespace rust {
-// Opaque type for holding pointer to rust object
+#pragma once
+
+#include <memory>
+
+namespace robot_joint::rust {
+
+/// Forward-declaration of opaque type to use as pointer to the Rust object.
 struct Joint;
+
+} // namespace robot_joint::rust
+
+extern "C" {
+  extern void robot_joint_free(robot_joint::rust::Joint*);
 }
 
-class Joint {
-  public:
-    Joint();
-    ~Joint();
-
-    // Disable copy as we cannot safely copy opaque pointers to rust objects.
-    Joint(Joint& other) = delete;
-    Joint& operator=(Joint& other) = delete;
-
-    // Explicit move.
-    Joint(Joint&& other);
-    Joint& operator=(Joint&& other);
-
-  private:
-    rust::Joint* joint_ = nullptr;
+/// Create a custom deleter from a function template argument.
+template<auto fn>
+struct deleter_from_fn {
+  template<typename T>
+  constexpr void operator()(T* arg) const {
+    fn(arg);
+  }
 };
 
-}  // namespace robot_joint
+namespace robot_joint {
+
+/// Move-only handle to robot_joint object (living on the Rust side).
+class Joint {
+public:
+  Joint() noexcept;
+  ~Joint() noexcept = default;
+
+  Joint(Joint&& other) noexcept            = default;
+  Joint& operator=(Joint&& other) noexcept = default;
+
+private:
+  std::unique_ptr<rust::Joint, deleter_from_fn<robot_joint_free>> robot_joint_;
+};
+
+} // namespace robot_joint
 ```
 
-Here, we create the source file for our C++ interface.
-Note how we use `extern "C"` to enable our C++ code to call the C functions from our Rust code.
-This is something we are manually keeping in sync.
-Had we used one of the previously linked-to code-generators, we would not have had to do this.
+C++ provides a special pointer type that will handle cleanup of the rust object for us if we specify the deleter as a template argument.
+In order to do setup the call to the rust destructor we have to have an extern definition in our header.
+As `unique_ptr` is move-only, copy construction and assignment are disabled.
+We need to default the move construction and assignment to enable moving this class which is safe.
+This C++ class is now memory safe.
 
-The constructor calls the Rust function that creates the `Joint` type and stores the pointer in the member `joint_`.
-The move constructor and assignment functions make this C++ type-safe to move by never creating two copies of the internal pointer.
-Lastly, the destructor frees the rust `joint_` object by calling the Rust function, which drops the memory.
 ```C++
 #include "robot_joint.hpp"
 
 extern "C" {
-extern robot_joint::rust::Joint* robot_joint_new();
-extern void robot_joint_free(robot_joint::rust::Joint*);
+  extern robot_joint::rust::Joint* robot_joint_new();
 }
 
 namespace robot_joint {
 
-Joint::Joint() : joint_(robot_joint_new()) {}
-
-Joint::Joint(Joint&& other) : joint_(other.joint_) {
-  other.joint_ = nullptr;
+Joint::Joint() noexcept
+  : joint_{robot_joint_new()} {
 }
 
-Joint& Joint::operator=(Joint&& other) {
-  joint_ = other.joint_;
-  other.joint_ = nullptr;
-  return *this;
-}
-
-Joint::~Joint() {
-  if (joint_ != nullptr) {
-    robot_joint_free(joint_);
-  }
-}
-
-}  // namespace robot_joint
+} // namespace robot_joint
 ```
+
+Here, we create the source file for our C++ interface.
+We again have an `extern "C"` to enable our C++ code to call the C function from Rust for creating the joint object.
 
 Lastly, the most challenging part is to make this compatible with CMake projects.
 I wrote a [follow-on blog post about that subject](/posts/rust-cmake-interop-cmake).
@@ -293,9 +295,12 @@ The significant upside is that I can reduce the amount of manually written unsaf
 
 **Next:** [C++ Interop Part 2 - CMake](/posts/rust-cmake-interop-cmake/)
 
+{{ admonition(kind="note", body="Thank-you [Kris van Rens](https://vanrens.org) for the kind feedback towards using `unique_ptr` instead of raw pointers.") }}
+
 ## References
 
 - [Slides PDF](/pdf/rust_cpp_interop.pdf)
+- [Kris van Rens](https://vanrens.org)
 - [The Rustnomicon](https://doc.rust-lang.org/nomicon/) -- The dark arts of unsafe Rust
 - [kylec/optick](https://github.com/kylc/optik) -- Rust IK solver with C++ and Rust bindings
 - [Google investing in Interoperability Between Rust and C++](https://security.googleblog.com/2024/02/improving-interoperability-between-rust-and-c.html?m=1)
