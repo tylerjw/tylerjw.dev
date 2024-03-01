@@ -170,11 +170,11 @@ private:
 } // namespace robot_joint
 ```
 
-C++ provides a special pointer type that will handle cleanup of the rust object for us if we specify the deleter as a template argument.
-In order to do setup the call to the rust destructor we have to have an extern definition in our header.
+C++ provides a special pointer type that will handle the cleanup of the rust object for us if we specify the deleter as a template argument.
+To set up the call to the rust destructor, we must have an extern definition in our header.
 As `unique_ptr` is move-only, copy construction and assignment are disabled.
-We need to default the move construction and assignment to enable moving this class which is safe.
-This C++ class is now memory safe.
+We need to default the move construction and assignment to enable moving this class.
+This C++ class is now memory-safe.
 
 ```C++
 #include "robot_joint.hpp"
@@ -193,7 +193,7 @@ Joint::Joint() noexcept
 ```
 
 Here, we create the source file for our C++ interface.
-We again have an `extern "C"` to enable our C++ code to call the C function from Rust for creating the joint object.
+We again have an `extern "C"` to enable our C++ code to call the C function from Rust to create the joint object.
 
 Lastly, the most challenging part is to make this compatible with CMake projects.
 I wrote a [follow-on blog post about that subject](/posts/rust-cmake-interop-cmake).
