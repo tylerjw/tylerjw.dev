@@ -173,8 +173,7 @@ private:
 C++ provides a special pointer type that will handle the cleanup of the rust object for us if we specify the deleter as a template argument.
 To set up the call to the rust destructor, we must have an extern definition in our header.
 As `unique_ptr` is move-only, copy construction and assignment are disabled.
-We need to default the move construction and assignment to enable moving this class.
-This C++ class is now memory-safe.
+This C++ class is now as safe as it can be.
 
 ```C++
 #include "robot_joint.hpp"

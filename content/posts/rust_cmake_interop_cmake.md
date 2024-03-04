@@ -212,6 +212,9 @@ catch_discover_tests(tests)
 ## static_assert the copy/move behavior
 
 Another helpful suggestion from [Kris van Rens](https://vanrens.org) was to use `static_assert` to statically assert the special function behavior of our Joint class.
+The purpose of these tests is to guarantee that the behavior of this class continues to be what we expect.
+If a change is introduced to the class later that causes it to no longer have the same public interface, these static_asserts would no longer compile.
+Here is an excerpt from our `crates/<lib-name>-cpp/tests/tests.cpp` file.
 
 ```c++
 #include <type_traits>
