@@ -16,6 +16,7 @@ highlight_code = true
 highlight_theme = "charcoal"
 render_emoji = true
 smart_punctuation = true
+
 [extra]
 date_format = "%d %b, %Y"
 
