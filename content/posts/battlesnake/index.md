@@ -22,7 +22,7 @@ It is a go program and is easy to download and install on your computer [followi
 
 ## Hosting
 
-Here is [the wiki on choosing a hosting solution](https://docs.battlesnake.com/guides/tips/hosting-suggestions).
+Here is [the wiki on choosing a hosting solution](https://docs.battlesnake.com/guides/hosting-suggestions).
 For mine, I decided to use Digital Ocean as I have had a good experience hosting there.
 Jonathan used [Replit](https://docs.battlesnake.com/quickstart) which also seems like it has a really good option.
 
@@ -46,7 +46,7 @@ My Dockerfile above was copied from the [Rust battlesnake starter project](https
 
 ## Starter Projects
 
-There are [official starter projects](https://docs.battlesnake.com/starter-projects#official-templates) for battlesnake for Python, Go, Rust, TypeScript, and JavaScript.
+There are [official starter projects](https://docs.battlesnake.com/starter-projects) for battlesnake for Python, Go, Rust, TypeScript, and JavaScript.
 There are also starter projects from the community for many other languages.
 These projects include many of the fiddly details of getting the webserver setup so you can jump right into programming your snake's ai.
 

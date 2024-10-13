@@ -49,7 +49,7 @@ A handful of well-known projects aim to automate creating bridges to and from C+
 - [cbindgen](https://github.com/mozilla/cbindgen) -- generate C/C++11 headers for Rust libraries which expose a public C API
 
 Due to my desire to create interfaces involving library types in Rust and C++ that felt first class in both languages none of these tools met my requirements.
-At PickNik we write robotics code and much of C++ code uses [Eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page) types.
+At PickNik we write robotics code and much of C++ code uses [Eigen](https://libeigen.gitlab.io/docs/) types.
 In Rust I wanted to use [nalgebra](https://docs.rs/nalgebra/latest/nalgebra/) types to represent the same concepts.
 
 ### On the Shoulders of Giants

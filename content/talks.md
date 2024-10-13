@@ -4,6 +4,8 @@ title = "Talks"
 
 ## 2024
 
+- [CppCon - C++/Rust Interop: Using Bridges in Practice](/posts/20240920-cppcon-cpp-rust-interop)
+- [CppCon - How I Found the Time to Learn Emacs](/posts/20240918-cppcon-lightingtalk)
 - [Boulder Rust Meetup - C++ Interop](/posts/rust-cpp-interop)
 
 ## 2023
