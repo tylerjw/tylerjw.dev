@@ -1,7 +1,7 @@
 # tylerjw.dev
 
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/tylerjw/tylerjw.dev/main.svg)](https://results.pre-commit.ci/latest/github/tylerjw/tylerjw.dev/main)
-![Zola Deploy](https://img.shields.io/github/actions/workflow/status/tylerjw/tylerjw.dev/deploy.yaml)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/tylerjw/tylerjw.dev/deploy.yaml?label=Build%20and%20Deploy)
 
 ## Env Setup
 
