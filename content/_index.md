@@ -1,5 +1,7 @@
 +++
 title = "Home"
+[extra]
+og_preview_img = "/images/profile.jpg"
 +++
 
 # 👋🏻 Hello

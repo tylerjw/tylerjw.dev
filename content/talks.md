@@ -1,5 +1,7 @@
 +++
 title = "Talks"
+[extra]
+og_preview_img = "/images/profile.jpg"
 +++
 
 ## 2024

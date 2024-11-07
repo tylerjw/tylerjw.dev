@@ -1,5 +1,7 @@
 +++
 title = "Contact Me"
+[extra]
+og_preview_img = "/images/profile.jpg"
 +++
 
 Email: _maybe at tylerjw.dev_<br/>
