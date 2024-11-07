@@ -19,6 +19,7 @@ smart_punctuation = true
 
 [extra]
 date_format = "%d %b, %Y"
+favicon = "/images/favicon.ico"
 
 [[extra.main_menu]]
 name = "Posts"
