@@ -5,6 +5,8 @@ type = "post"
 in_search_index = true
 [taxonomies]
 tags = ["Rust", "Testing", "Software"]
+[extra]
+og_preview_img = "/images/20241106_the_feeling.jpg"
 +++
 
 You and I only have a small amount of time to write software.
