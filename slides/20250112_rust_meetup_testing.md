@@ -21,11 +21,128 @@ Instead of manually interacting with our whole program, we write many small prog
 layout: section
 ---
 
-# The Basics: Kinds of Tests
+# The Basics
 
 ---
 
-# Unit Tests
+## Assert Macro
+
+```rust
+assert!(add(2, 2) == 3);
+```
+
+<!--
+Let's talk about the humble assert macro.
+This is the work-horse of statements within the test code.
+
+Let's look at the output from this assert macro call.
+-->
+
+---
+
+## Assert Macro
+
+```rust
+assert!(add(2, 2) == 3);
+```
+```
+---- tests::no_worky stdout ----
+thread 'tests::no_worky' panicked at src/lib.rs:17:9:
+assertion failed: add(2, 2) == 3
+```
+
+<!--
+Can we do better?
+-->
+
+---
+
+## Assert Macro
+
+```rust
+assert!(add(2, 2) == 3);
+```
+```
+---- tests::no_worky stdout ----
+thread 'tests::no_worky' panicked at src/lib.rs:17:9:
+assertion failed: add(2, 2) == 3
+```
+
+```rust
+assert_eq!(add(2, 2), 3);
+```
+```
+---- tests::no_worky stdout ----
+thread 'tests::no_worky' panicked at src/lib.rs:17:9:
+assertion `left == right` failed
+  left: 4
+ right: 3
+```
+
+<!--
+What do we like, what do we not like about this?
+-->
+
+---
+
+## Assert Macro
+
+```rust
+assert!(add(2, 2) == 3);
+```
+```
+---- tests::no_worky stdout ----
+thread 'tests::no_worky' panicked at src/lib.rs:17:9:
+assertion failed: add(2, 2) == 3
+```
+
+```rust
+assert_eq!(add(2, 2), 3);
+```
+```
+---- tests::no_worky stdout ----
+thread 'tests::no_worky' panicked at src/lib.rs:17:9:
+assertion `left == right` failed
+  left: 4
+ right: 3
+```
+
+```rust
+assert_eq!(add(2,2), 3, "2+2 should equal 3");
+```
+```
+---- tests::no_worky stdout ----
+thread 'tests::no_worky' panicked at src/lib.rs:17:9:
+assertion `left == right` failed: 2+2 should equal 3
+  left: 4
+ right: 3
+```
+
+<!--
+What do we like, what do we not like about this?
+
+Note that there is also an assert_ne macro we can use.
+-->
+
+---
+
+## Assert Macro takes a Format expression
+
+```rust
+assert!(a + b == 30, "a = {a}, b = {b}");
+```
+```
+---- tests::no_worky stdout ----
+thread 'tests::no_worky' panicked at src/lib.rs:20:9:
+assertion `left == right` failed: a = 2, b = 33
+  left: 35
+ right: 30
+```
+
+
+---
+
+## Unit Tests
 
 ````md magic-move
 ```rust
@@ -78,121 +195,7 @@ You'll notice that the add function is not public, yet we can still access it he
 -->
 
 ---
-
-# Assert Macro
-
-```rust
-assert!(add(2, 2) == 3);
-```
-
-<!--
-Let's talk about the humble assert macro.
-This is the work-horse of statements within the test code.
-
-Let's look at the output from this assert macro call.
--->
-
----
-
-# Assert Macro
-
-```rust
-assert!(add(2, 2) == 3);
-```
-```
----- tests::no_worky stdout ----
-thread 'tests::no_worky' panicked at src/lib.rs:17:9:
-assertion failed: add(2, 2) == 3
-```
-
-<!--
-Can we do better?
--->
-
----
-
-# Assert Macro
-
-```rust
-assert!(add(2, 2) == 3);
-```
-```
----- tests::no_worky stdout ----
-thread 'tests::no_worky' panicked at src/lib.rs:17:9:
-assertion failed: add(2, 2) == 3
-```
-
-```rust
-assert_eq!(add(2, 2), 3);
-```
-```
----- tests::no_worky stdout ----
-thread 'tests::no_worky' panicked at src/lib.rs:17:9:
-assertion `left == right` failed
-  left: 4
- right: 3
-```
-
-<!--
-What do we like, what do we not like about this?
--->
-
----
-
-# Assert Macro
-
-```rust
-assert!(add(2, 2) == 3);
-```
-```
----- tests::no_worky stdout ----
-thread 'tests::no_worky' panicked at src/lib.rs:17:9:
-assertion failed: add(2, 2) == 3
-```
-
-```rust
-assert_eq!(add(2, 2), 3);
-```
-```
----- tests::no_worky stdout ----
-thread 'tests::no_worky' panicked at src/lib.rs:17:9:
-assertion `left == right` failed
-  left: 4
- right: 3
-```
-
-```rust
-assert_eq!(add(2,2), 3, "2+2 should equal 3");
-```
-```
----- tests::no_worky stdout ----
-thread 'tests::no_worky' panicked at src/lib.rs:17:9:
-assertion `left == right` failed: 2+2 should equal 3
-  left: 4
- right: 3
-```
-
-<!--
-What do we like, what do we not like about this?
-
-Note that there is also an assert_ne macro we can use.
--->
-
----
-
-# Assert Macro takes a Format expression
-
-```rust
-assert!(a + b == 30, "a = {a}, b = {b}");
-```
-```
----- tests::no_worky stdout ----
-thread 'tests::no_worky' panicked at src/lib.rs:20:9:
-assertion `left == right` failed: a = 2, b = 33
-  left: 35
- right: 30
-```
-
+layout: section
 ---
 
 # Integration Tests
@@ -208,7 +211,7 @@ When you place a rust file in the directory `tests` at the root of your project 
 
 ---
 
-# Integration Tests
+## Integration Tests
 
 ### src/lib.rs
 ```rust
@@ -224,7 +227,7 @@ We assume it is in a crate called `addr`.
 
 ---
 
-# Integration Tests
+## Integration Tests
 
 ### src/lib.rs
 ```rust
@@ -247,7 +250,7 @@ Now when we call `cargo test` it'll build this separate crate called `integratio
 
 ---
 
-# Documentation Tests
+## Documentation Tests
 
 ````md magic-move
 ```rust
@@ -298,6 +301,14 @@ Be careful doing this though as it can be easy to hide from users lines of code 
 -->
 
 ---
+
+## Doctests from the README
+
+```rust
+#![doc = include_str!("../README.md")]
+```
+
+---
 layout: image
 
 image: ./20250122_tests_name_meme.jpg
@@ -322,7 +333,7 @@ layout: section
 
 ---
 
-# Async Unit Test
+## Tokio Async Test
 
 ```rust
 #[tokio::test]
@@ -333,7 +344,7 @@ async fn my_test() {
 
 ---
 
-# Async Unit Test
+## Tokio Async Test
 
 ```rust
 #[tokio::test]
@@ -351,10 +362,58 @@ async fn my_test() {
 
 ---
 
-# Waiting for something to happen
+## Waiting
 
 ```rust
-// show some async code waiting on an event, not sleeping
+// wait for is_finished to be true, or timeout
+let start = tokio::time::Instant::now();
+loop {
+    if is_finished() {
+        break;
+    }
+    if tokio::time::Instant::now().duration_since(start) >
+        tokio::time::Duration::from_secs(5)
+    {
+        panic!("Timed out waiting for is_finished to be true");
+    }
+    tokio::time::sleep(tokio::time::Duration::from_millis(1));
+}
+```
+
+<!--
+Here is some code out of a test I wrote at some point earlier this year.
+Talk to me about how you'd improve this, or what you'd do differently.
+-->
+
+---
+
+## Lazy Sync Runner
+
+```rust
+fn lazy_sync_runner() -> anyhow::Result<Arc<tokio::runtime::Runtime>> {
+    static ASYNC_RUNTIME: OnceLock<Mutex<Weak<tokio::runtime::Runtime>>> = OnceLock::new();
+    let mut guard = ASYNC_RUNTIME
+        .get_or_init(|| Mutex::new(Weak::new()))
+        .lock()
+        .map_err(|e| {
+            anyhow!("failed to build a runtime for sync-runner: {e}")
+        })?;
+
+    match guard.upgrade() {
+        Some(runtime) => Ok(runtime),
+        None => {
+            let runtime = Arc::new(
+                tokio::runtime::Builder::new_multi_thread()
+                    .thread_name("lazy-sync-runner")
+                    .worker_threads(2)
+                    .enable_all()
+                    .build()?,
+            );
+            *guard = Arc::downgrade(&runtime);
+            Ok(runtime)
+        }
+    }
+}
 ```
 
 ---
@@ -365,7 +424,7 @@ layout: section
 
 ---
 
-# Logging
+## Logging
 
 
 ````md magic-move
@@ -416,7 +475,7 @@ mod tests {
 
 ---
 
-# test_log
+## test_log
 
 ```toml
 [dev-dependencies]
@@ -440,45 +499,96 @@ async fn async_test() {
 
 ---
 
-## Lazy Sync Runner
+## Testing with a Database
 
 ```rust
-fn lazy_sync_runner() -> anyhow::Result<Arc<tokio::runtime::Runtime>> {
-    static ASYNC_RUNTIME: OnceLock<Mutex<Weak<tokio::runtime::Runtime>>> = OnceLock::new();
-    let mut guard = ASYNC_RUNTIME
-        .get_or_init(|| Mutex::new(Weak::new()))
-        .lock()
-        .map_err(|e| {
-            anyhow!("failed to build a runtime for sync-runner: {e}")
-        })?;
-
-    match guard.upgrade() {
-        Some(runtime) => Ok(runtime),
-        None => {
-            let runtime = Arc::new(
-                tokio::runtime::Builder::new_multi_thread()
-                    .thread_name("lazy-sync-runner")
-                    .worker_threads(2)
-                    .enable_all()
-                    .build()?,
-            );
-            *guard = Arc::downgrade(&runtime);
-            Ok(runtime)
-        }
-    }
+#[test]
+fn database_update_works() {
+    let default_database_url = "postgresql://yugabyte@localhost:5433/yugabyte?sslmode=disable";
+    let connection = diesel::PgConnection::establish(&default_database_url);
+    // ...
 }
 ```
 
+<!--
+Let's talk about what is wrong with this.
+
+Tell me how you might and have dealt with this?
+-->
+
+---
+
+## test_context
+
+```rust
+use test_context::{test_context, AsyncTestContext};
+
+struct MyAsyncContext {
+    value: String
+}
+
+impl AsyncTestContext for MyAsyncContext {
+    async fn setup() -> MyAsyncContext {
+        MyAsyncContext { value: "Hello, world!".to_string() }
+    }
+    async fn teardown(self) {
+        // Perform any teardown you wish.
+    }
+}
+
+#[test_context(MyAsyncContext)]
+#[tokio::test]
+async fn test_async_works(ctx: &mut MyAsyncContext) {
+    assert_eq!(ctx.value, "Hello, World!");
+}
+```
+
+<!--
+What could we do with this to fix our database testing problem?
+-->
+
+---
+
+## testcontainers
+
+```rust
+use testcontainers_modules::{postgres, testcontainers::runners::SyncRunner};
+
+#[test]
+fn test_with_postgres() {
+    let container = postgres::Postgres::default().start().unwrap();
+    let host_port = container.get_host_port_ipv4(5432).unwrap();
+    let connection_string = &format!(
+        "postgres://postgres:postgres@127.0.0.1:{host_port}/postgres",
+    );
+}
+```
+
+<!--
+If we combine the test_context and this we can have a nice easy solution, right?
+Why not?
+
+Talk about what I did
+-->
+
+
 ---
 layout: section
 ---
 
-# Extra 1: Who watches the watcher?
+# Who tests the tests?
+
+<!--
+cargo-mutants
+-->
 
 ---
 layout: section
 ---
 
-# Extra 2: Speed
+# I wanna to go fast!
 
+<!--
+nextest
+-->
 ---
