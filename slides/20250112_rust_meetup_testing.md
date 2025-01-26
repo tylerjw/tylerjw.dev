@@ -156,7 +156,7 @@ fn it_works() {
 }
 ```
 ```rust
-pub fn add(left: usize, right: usize) -> usize {
+fn add(left: usize, right: usize) -> usize {
     left + right
 }
 
@@ -473,6 +473,10 @@ mod tests {
 ```
 ````
 
+<!--
+Anyone know the type of _default_guard?
+-->
+
 ---
 
 ## test_log
@@ -504,7 +508,7 @@ async fn async_test() {
 ```rust
 #[test]
 fn database_update_works() {
-    let default_database_url = "postgresql://yugabyte@localhost:5433/yugabyte?sslmode=disable";
+    let default_database_url = "postgresql://yugabyte@localhost:5432/yugabyte?sslmode=disable";
     let connection = diesel::PgConnection::establish(&default_database_url);
     // ...
 }
