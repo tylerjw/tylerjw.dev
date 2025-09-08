@@ -41,3 +41,15 @@ python3 -m pip install -r slides/requirements.txt
 ## Generate QR codes for slides
 
 Use [qrcode-monkey](https://www.qrcode-monkey.com/).
+
+## Resizing Images
+
+To resize an image to be 1080 pixels wide:
+```bash
+magick PXL_20250903_161814058.MP.jpg -resize 1080x PXL_20250903_161814058.MP-r.jpg
+```
+
+To get the width and height of an image:
+```bash
+identify -format "%wx%h\n" PXL_20250904_181454627.jpg
+```
