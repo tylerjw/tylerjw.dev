@@ -20,31 +20,31 @@ extern "C" {
     // Joint lifecycle
     extern robot_joint::rust::RobotJointHandle* robot_joint_new(const char* name);
     extern void robot_joint_free(robot_joint::rust::RobotJointHandle* joint);
-    
+
     // String management
     extern const char* robot_joint_get_name(const robot_joint::rust::RobotJointHandle* joint);
     extern void robot_joint_free_string(char* s);
-    
+
     // Property getters
     extern unsigned int robot_joint_get_index(const robot_joint::rust::RobotJointHandle* joint);
     extern unsigned int robot_joint_get_parent_link_index(const robot_joint::rust::RobotJointHandle* joint);
     extern unsigned int robot_joint_get_child_link_index(const robot_joint::rust::RobotJointHandle* joint);
     extern unsigned int robot_joint_get_dof_index(const robot_joint::rust::RobotJointHandle* joint);
-    
+
     // Transform calculations
     extern robot_joint::rust::Mat4d robot_joint_calculate_transform(
         const robot_joint::rust::RobotJointHandle* joint,
         const double* variables,
         unsigned int size);
-    
+
     extern robot_joint::rust::Mat4d robot_joint_get_parent_link_to_joint_origin(
         const robot_joint::rust::RobotJointHandle* joint);
-    
+
     // Joint limits
     extern bool robot_joint_is_within_limits(
         const robot_joint::rust::RobotJointHandle* joint,
         double position);
-    
+
     extern void robot_joint_get_limits(
         const robot_joint::rust::RobotJointHandle* joint,
         double* min_limit,
@@ -67,7 +67,7 @@ class Joint {
 public:
     /// Create a new joint with the given name
     explicit Joint(const std::string& name) noexcept;
-    
+
     /// Default destructor
     ~Joint() noexcept = default;
 

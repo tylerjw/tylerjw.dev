@@ -19,7 +19,7 @@ inline Eigen::Isometry3d to_eigen_isometry3d(rust::Vec<double>&& raw_vec) {
         // Return identity on invalid input
         return Eigen::Isometry3d::Identity();
     }
-    
+
     Eigen::Isometry3d transform;
     transform.matrix() = Eigen::Map<const Eigen::Matrix4d>(raw_vec.data());
     return transform;
@@ -30,7 +30,7 @@ inline Eigen::Isometry3d to_eigen_isometry3d(const rust::Vec<double>& raw_vec) {
     if (raw_vec.size() != 16) {
         return Eigen::Isometry3d::Identity();
     }
-    
+
     Eigen::Isometry3d transform;
     transform.matrix() = Eigen::Map<const Eigen::Matrix4d>(raw_vec.data());
     return transform;
@@ -55,7 +55,7 @@ inline rust::Slice<const double> to_rust_slice(const std::vector<double>& vec) {
 inline rust::Vec<double> to_rust_vec(const Eigen::Isometry3d& transform) {
     rust::Vec<double> vec;
     vec.reserve(16);
-    
+
     const auto& matrix = transform.matrix();
     // Store in column-major order
     for (int col = 0; col < 4; ++col) {
@@ -63,7 +63,7 @@ inline rust::Vec<double> to_rust_vec(const Eigen::Isometry3d& transform) {
             vec.push_back(matrix(row, col));
         }
     }
-    
+
     return vec;
 }
 
@@ -71,7 +71,7 @@ inline rust::Vec<double> to_rust_vec(const Eigen::Isometry3d& transform) {
 inline rust::Vec<double> to_rust_vec(const std::vector<Eigen::Isometry3d>& transforms) {
     rust::Vec<double> vec;
     vec.reserve(16 * transforms.size());
-    
+
     for (const auto& transform : transforms) {
         const auto& matrix = transform.matrix();
         for (int col = 0; col < 4; ++col) {
@@ -80,7 +80,7 @@ inline rust::Vec<double> to_rust_vec(const std::vector<Eigen::Isometry3d>& trans
             }
         }
     }
-    
+
     return vec;
 }
 
@@ -89,17 +89,17 @@ inline rust::Vec<double> to_rust_vec(const std::vector<Eigen::Isometry3d>& trans
 inline std::vector<Eigen::Isometry3d> to_eigen_isometry_vector(rust::Vec<double>&& raw_vec) {
     constexpr size_t kMatrixSize = 16;
     const size_t num_transforms = raw_vec.size() / kMatrixSize;
-    
+
     std::vector<Eigen::Isometry3d> transforms;
     transforms.reserve(num_transforms);
-    
+
     for (size_t i = 0; i < num_transforms; ++i) {
         const double* matrix_data = raw_vec.data() + (i * kMatrixSize);
         Eigen::Isometry3d transform;
         transform.matrix() = Eigen::Map<const Eigen::Matrix4d>(matrix_data);
         transforms.push_back(transform);
     }
-    
+
     return transforms;
 }
 
