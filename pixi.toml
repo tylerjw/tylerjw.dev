@@ -1,0 +1,26 @@
+[project]
+name = "tylerjw-dev"
+version = "0.1.0"
+description = "Tyler Weavers's personal website and slides"
+authors = ["Tyler Weaver <tyler@tylerjw.dev>"]
+channels = ["conda-forge"]
+platforms = ["linux-64"]
+
+[dependencies]
+python = "==3.10"
+zola = ">=0.21.0,<0.22"
+inotify-tools = ">=3.20.2,<4"
+pre-commit = "*"
+
+[pypi-dependencies]
+elsie = "==3.4"
+lxml = "==4.6.5"
+marko = "==1.2.0"
+Pillow = ">=9.0.1,<9.1.0"
+Pygments = "==2.11.2"
+PyPDF2 = "==1.26.0"
+
+[tasks]
+blog = "zola serve"
+slides = { cmd = "./watch.sh", cwd = "slides" }
+lint = "pre-commit run -a"
