@@ -2,11 +2,11 @@
 
 This project demonstrates various patterns for Rust/C++ interoperability, based on the blog post series by Tyler Weaver:
 
-- [Part 1: Just the Basics](tylerjw.dev/posts/rust-cpp-interop)
-- [Part 2: CMake Integration](tylerjw.dev/posts/rust-cmake-interop-cmake)
-- [Part 3: Using Cxx](tylerjw.dev/posts/rust-cmake-interop-part-3-cxx)
-- [Part 4: Binding to C++ Libraries](tylerjw.dev/posts/rust-cpp-part4-buildrs)
-- [Part 5: Interop in 2025](tylerjw.dev/posts/20251003-rust-cpp-interop-2025-update)
+- [Part 1: Just the Basics](https://tylerjw.dev/posts/rust-cpp-interop)
+- [Part 2: CMake Integration](https://tylerjw.dev/posts/rust-cmake-interop-cmake)
+- [Part 3: Using Cxx](https://tylerjw.dev/posts/rust-cmake-interop-part-3-cxx)
+- [Part 4: Binding to C++ Libraries](https://tylerjw.dev/posts/rust-cpp-part4-buildrs)
+- [Part 5: Interop in 2025](https://tylerjw.dev/posts/20251003-rust-cpp-interop-2025-update)
 
 ## Project Structure
 
