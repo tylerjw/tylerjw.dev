@@ -1,0 +1,20 @@
+[package]
+name = "robot_joint-cxx"
+authors.workspace = true
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Cxx-based C++ bindings for robot_joint library"
+keywords = ["robotics", "ffi", "cpp", "interop", "cxx"]
+categories = ["api-bindings", "external-ffi-bindings"]
+
+[lib]
+crate-type = ["staticlib"]
+
+[dependencies]
+robot_joint = { path = "../robot_joint" }
+cxx = "1.0"
+nalgebra = "0.32"
+
+[build-dependencies]
+cxx-build = "1.0"

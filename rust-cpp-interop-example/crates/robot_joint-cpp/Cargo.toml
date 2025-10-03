@@ -1,0 +1,19 @@
+[package]
+name = "robot_joint-cpp"
+authors.workspace = true
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Manual FFI C++ bindings for robot_joint library"
+keywords = ["robotics", "ffi", "cpp", "interop"]
+categories = ["api-bindings", "external-ffi-bindings"]
+
+[lib]
+name = "robot_jointcpp"
+crate-type = ["staticlib"]
+
+[dependencies]
+robot_joint = { path = "../robot_joint" }
+
+[build-dependencies]
+# None needed for manual FFI

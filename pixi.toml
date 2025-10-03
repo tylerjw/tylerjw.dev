@@ -11,6 +11,9 @@ python = "==3.10"
 zola = ">=0.21.0,<0.22"
 inotify-tools = ">=3.20.2,<4"
 pre-commit = "*"
+eigen = ">=3.4.0,<4"
+cmake = ">=4.1.2,<5"
+valgrind = ">=3.25.1,<4"
 
 [pypi-dependencies]
 elsie = "==3.4"
@@ -24,3 +27,4 @@ PyPDF2 = "==1.26.0"
 blog = "zola serve"
 slides = { cmd = "./watch.sh", cwd = "slides" }
 lint = "pre-commit run -a"
+interop-example = { cmd = "make", cwd = "rust-cpp-interop-example" }

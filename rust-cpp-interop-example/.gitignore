@@ -1,16 +1,10 @@
-public/
-build/
-install/
-log/
-elsie-cache/
-__pycache__/
-.venv/
-.idea/
-target/
+# Rust build artifacts
+/target/
+Cargo.lock
 
 # CMake build directories
-/build/
-/build-*/
+/crates/*/build/
+/crates/*/build-*/
 
 # Generated executables
 /examples/manual_ffi_example
@@ -22,12 +16,14 @@ target/
 .manual-ffi-build-stamp
 .cxx-build-stamp
 
-# IDE and other files
+# IDE and editor files
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
+
+# OS generated files
 .DS_Store
 .DS_Store?
 ._*
