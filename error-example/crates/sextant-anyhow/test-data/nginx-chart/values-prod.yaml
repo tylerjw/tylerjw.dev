@@ -1,0 +1,102 @@
+# Production values for nginx-chart
+replicaCount: 3
+
+image:
+  repository: nginx
+  pullPolicy: IfNotPresent
+  tag: "1.21-alpine"
+
+nameOverride: "nginx-app"
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::123456789012:role/nginx-role
+  name: "nginx-prod"
+
+podAnnotations:
+  prometheus.io/scrape: "true"
+  prometheus.io/port: "9113"
+
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 101
+  fsGroup: 101
+
+securityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  capabilities:
+    drop:
+      - ALL
+
+service:
+  type: LoadBalancer
+  port: 80
+
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  hosts:
+    - host: nginx.production.com
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - secretName: nginx-tls
+      hosts:
+        - nginx.production.com
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 250m
+    memory: 256Mi
+
+autoscaling:
+  enabled: true
+  minReplicas: 3
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 70
+  targetMemoryUtilizationPercentage: 80
+
+nodeSelector:
+  kubernetes.io/arch: amd64
+
+tolerations:
+  - key: "production"
+    operator: "Equal"
+    value: "true"
+    effect: "NoSchedule"
+
+affinity:
+  podAntiAffinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100
+        podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+              - key: app.kubernetes.io/name
+                operator: In
+                values:
+                  - nginx-chart
+          topologyKey: kubernetes.io/hostname
+
+# Redis dependency enabled in production
+redis:
+  enabled: true
+  auth:
+    enabled: true
+    password: "super-secret-redis-password"
+  replica:
+    replicaCount: 2
+  master:
+    persistence:
+      enabled: true
+      size: 8Gi

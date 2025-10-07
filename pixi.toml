@@ -28,3 +28,4 @@ blog = "zola serve"
 slides = { cmd = "./watch.sh", cwd = "slides" }
 lint = "pre-commit run -a"
 interop-example = { cmd = "make", cwd = "rust-cpp-interop-example" }
+error-example = { cmd = "cargo test", cwd = "error-example" }

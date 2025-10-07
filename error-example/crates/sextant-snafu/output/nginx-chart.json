@@ -1,0 +1,98 @@
+{
+  "chart_name": "nginx-chart",
+  "chart_version": "1.2.3",
+  "chart_path": "test-data/nginx-chart",
+  "values_analyses": {
+    "values-prod.yaml": {
+      "values_file": "values-prod.yaml",
+      "resource_counts": {
+        "Deployment": 1,
+        "ConfigMap": 1,
+        "ServiceAccount": 1,
+        "Service": 1
+      },
+      "resources": {
+        "Deployment": [
+          {
+            "name": "nginx-app",
+            "namespace": "default",
+            "source_template": "test-data/nginx-chart/templates/deployment.yaml"
+          }
+        ],
+        "ServiceAccount": [
+          {
+            "name": "nginx-app-sa",
+            "namespace": "default",
+            "source_template": "test-data/nginx-chart/templates/serviceaccount.yaml"
+          }
+        ],
+        "ConfigMap": [
+          {
+            "name": "nginx-app-config",
+            "namespace": "default",
+            "source_template": "test-data/nginx-chart/templates/configmap.yaml"
+          }
+        ],
+        "Service": [
+          {
+            "name": "nginx-app-service",
+            "namespace": "default",
+            "source_template": "test-data/nginx-chart/templates/service.yaml"
+          }
+        ]
+      },
+      "total_resources": 4
+    },
+    "values.yaml": {
+      "values_file": "values.yaml",
+      "resource_counts": {
+        "ConfigMap": 1,
+        "Service": 1,
+        "ServiceAccount": 1,
+        "Deployment": 1
+      },
+      "resources": {
+        "ConfigMap": [
+          {
+            "name": "nginx-app-config",
+            "namespace": "default",
+            "source_template": "test-data/nginx-chart/templates/configmap.yaml"
+          }
+        ],
+        "ServiceAccount": [
+          {
+            "name": "nginx-app-sa",
+            "namespace": "default",
+            "source_template": "test-data/nginx-chart/templates/serviceaccount.yaml"
+          }
+        ],
+        "Deployment": [
+          {
+            "name": "nginx-app",
+            "namespace": "default",
+            "source_template": "test-data/nginx-chart/templates/deployment.yaml"
+          }
+        ],
+        "Service": [
+          {
+            "name": "nginx-app-service",
+            "namespace": "default",
+            "source_template": "test-data/nginx-chart/templates/service.yaml"
+          }
+        ]
+      },
+      "total_resources": 4
+    }
+  },
+  "metadata": {
+    "description": "A simple nginx web server chart for testing sextant",
+    "api_version": "v2",
+    "chart_type": "application",
+    "keywords": [
+      "nginx",
+      "web",
+      "server"
+    ],
+    "dependency_count": 1
+  }
+}

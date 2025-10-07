@@ -1,0 +1,17 @@
+apiVersion: v2
+name: nginx-chart
+version: 1.2.3
+description: A simple nginx web server chart for testing sextant
+type: application
+keywords:
+  - nginx
+  - web
+  - server
+maintainers:
+  - name: Test User
+    email: test@example.com
+dependencies:
+  - name: redis
+    version: "^17.0.0"
+    repository: https://charts.bitnami.com/bitnami
+    condition: redis.enabled

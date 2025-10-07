@@ -1,0 +1,58 @@
+{
+  "chart_name": "redis-chart",
+  "chart_version": "0.5.2",
+  "chart_path": "test-data/redis-chart",
+  "values_analyses": {
+    "values.yaml": {
+      "values_file": "values.yaml",
+      "resource_counts": {
+        "Deployment": 1,
+        "Secret": 1,
+        "Service": 1,
+        "ConfigMap": 1
+      },
+      "resources": {
+        "Secret": [
+          {
+            "name": "redis-cache-secret",
+            "namespace": "default",
+            "source_template": "test-data/redis-chart/templates/secret.yaml"
+          }
+        ],
+        "Service": [
+          {
+            "name": "redis-cache-service",
+            "namespace": "default",
+            "source_template": "test-data/redis-chart/templates/service.yaml"
+          }
+        ],
+        "Deployment": [
+          {
+            "name": "redis-cache",
+            "namespace": "default",
+            "source_template": "test-data/redis-chart/templates/deployment.yaml"
+          }
+        ],
+        "ConfigMap": [
+          {
+            "name": "redis-cache-config",
+            "namespace": "default",
+            "source_template": "test-data/redis-chart/templates/configmap.yaml"
+          }
+        ]
+      },
+      "total_resources": 4
+    }
+  },
+  "metadata": {
+    "description": "A simple Redis cache chart for testing sextant",
+    "api_version": "v2",
+    "chart_type": "application",
+    "keywords": [
+      "redis",
+      "cache",
+      "database"
+    ],
+    "dependency_count": 0
+  }
+}

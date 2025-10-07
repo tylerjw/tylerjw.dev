@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.nameOverride }}-service
+  namespace: default
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: 80
+      protocol: TCP
+  selector:
+    app: {{ .Values.nameOverride }}

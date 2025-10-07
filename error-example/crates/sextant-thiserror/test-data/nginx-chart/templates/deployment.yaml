@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.nameOverride }}
+  namespace: default
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.nameOverride }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.nameOverride }}
+    spec:
+      containers:
+      - name: nginx
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        ports:
+        - containerPort: 80

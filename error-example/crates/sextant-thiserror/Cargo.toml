@@ -1,0 +1,20 @@
+[package]
+name = "sextant-thiserror"
+version = "0.1.0"
+edition = "2024"
+description = "Helm chart resource analyzer using thiserror for error handling"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/tylerjw/tylerjw.dev"
+
+[dependencies]
+thiserror = "1.0"
+async-backtrace = "0.2"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+serde_yaml = "0.9"
+tokio = { version = "1.0", features = ["full"] }
+clap = { version = "4.0", features = ["derive"] }
+
+[dev-dependencies]
+tempfile = "3.0"
+test-log = "0.2"

@@ -1,0 +1,12 @@
+[workspace]
+members = ["crates/*"]
+resolver = "3"
+
+[workspace.package]
+description = "Example project demonstrating Rust Error Libraries"
+authors = ["Tyler Weaver <tyler@tylerjw.dev>"]
+version = "0.1.0"
+edition = "2024"
+license = "BSD-3-Clause"
+readme = "README.md"
+repository = "https://github.com/tylerjw/tylerjw.dev"

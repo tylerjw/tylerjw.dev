@@ -1,0 +1,34 @@
+# Default values for redis-chart
+replicaCount: 1
+
+image:
+  repository: redis
+  pullPolicy: IfNotPresent
+  tag: "7.0-alpine"
+
+nameOverride: "redis-cache"
+
+service:
+  type: ClusterIP
+  port: 6379
+
+persistence:
+  enabled: false
+  size: 1Gi
+
+auth:
+  enabled: false
+  password: ""
+
+resources:
+  requests:
+    memory: "64Mi"
+    cpu: "50m"
+  limits:
+    memory: "128Mi"
+    cpu: "100m"
+
+config:
+  maxmemory: "100mb"
+  maxmemoryPolicy: "allkeys-lru"
+  timeout: 300

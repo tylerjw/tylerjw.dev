@@ -1,0 +1,12 @@
+apiVersion: v2
+name: redis-chart
+version: 0.5.2
+description: A simple Redis cache chart for testing sextant
+type: application
+keywords:
+  - redis
+  - cache
+  - database
+maintainers:
+  - name: Redis Team
+    email: redis@example.com
