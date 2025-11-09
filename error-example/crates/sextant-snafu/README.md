@@ -15,7 +15,7 @@ A Helm Chart Resource Analyzer demonstrating error handling with [`snafu`](https
 # Analyze single chart
 cargo run -- chart path/to/chart
 
-# Analyze multiple charts  
+# Analyze multiple charts
 cargo run -- charts path/to/charts-dir --output reports/
 ```
 
@@ -31,15 +31,15 @@ pub enum Error {
         source: std::io::Error,
         backtrace: snafu::Backtrace,
     },
-    
+
     #[snafu(display("Invalid format: {message}"))]
-    InvalidFormat { 
+    InvalidFormat {
         message: String,
-        backtrace: snafu::Backtrace, 
+        backtrace: snafu::Backtrace,
     },
-    
+
     #[snafu(display("YAML error"), context(false))]
-    Yaml { 
+    Yaml {
         source: serde_yaml::Error,
         backtrace: snafu::Backtrace,
     },
@@ -68,7 +68,7 @@ pub enum ChartError {
         source: TemplateError,
         backtrace: snafu::Backtrace,  // Captures call stack
     },
-    
+
     // Skip backtrace for simple validation errors
     #[snafu(display("Chart name cannot be empty"))]
     EmptyName,  // No backtrace field
@@ -83,7 +83,7 @@ if let Err(error) = result {
     // Beautiful, structured error reporting
     let report = Report::from_error(&error);
     eprintln!("Error: {}", report);
-    
+
     // Access backtrace when available
     if let Some(backtrace) = ErrorCompat::backtrace(&error) {
         eprintln!("Backtrace:\n{}", backtrace);
@@ -101,7 +101,7 @@ Caused by these errors (recent errors listed first):
   3: Invalid YAML format in Chart.yaml *
   4: mapping values are not allowed in this context at line 2 column 10
 
-NOTE: Some redundant information has been removed from the lines marked with *. 
+NOTE: Some redundant information has been removed from the lines marked with *.
 Set SNAFU_RAW_ERROR_MESSAGES=1 to disable this behavior.
 ```
 

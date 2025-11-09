@@ -15,7 +15,7 @@ A Helm Chart Resource Analyzer demonstrating error handling with [`anyhow`](http
 # Analyze single chart
 cargo run -- chart path/to/chart
 
-# Analyze multiple charts  
+# Analyze multiple charts
 cargo run -- charts path/to/charts-dir --output reports/
 ```
 

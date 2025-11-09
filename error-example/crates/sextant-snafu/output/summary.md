@@ -28,4 +28,3 @@
 | Values File | ConfigMap | Deployment | Secret | Service | Total |
 |---|---|---|---|---|
 | values.yaml | 1 | 1 | 1 | 1 | 4 |
-

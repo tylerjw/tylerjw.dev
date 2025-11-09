@@ -15,7 +15,7 @@ A Helm Chart Resource Analyzer demonstrating error handling with [`thiserror`](h
 # Analyze single chart
 cargo run -- chart path/to/chart
 
-# Analyze multiple charts  
+# Analyze multiple charts
 cargo run -- charts path/to/charts-dir --output reports/
 ```
 
@@ -31,10 +31,10 @@ pub enum Error {
         #[source]
         source: std::io::Error,
     },
-    
+
     #[error("Invalid format: {0}")]
     InvalidFormat(String),
-    
+
     #[error(transparent)]
     Yaml(#[from] serde_yaml::Error),
 }
@@ -47,7 +47,7 @@ pub enum Error {
 pub enum Error {
     #[error(transparent)]
     Chart(#[from] chart::ChartError),
-    
+
     #[error(transparent)]
     Analysis(#[from] analyzer::AnalysisError),
 }
@@ -57,7 +57,7 @@ pub enum Error {
 pub enum ChartError {
     #[error("No Chart.yaml found in {path}")]
     ChartFileNotFound { path: PathBuf },
-    
+
     #[error("Chart name cannot be empty")]
     EmptyName,
 }

@@ -36,7 +36,7 @@ pub enum Error {
         #[source]
         source: std::io::Error,
     },
-    
+
     #[error("Invalid format: {0}")]
     InvalidFormat(String),
 }
@@ -92,7 +92,7 @@ Each module defines its error type, converted at boundaries:
 pub enum Error {
     #[error(transparent)]
     Chart(#[from] chart::ChartError),
-    
+
     #[error(transparent)]
     Template(#[from] template::TemplateError),
 }
@@ -192,7 +192,7 @@ Caused by these errors (recent errors listed first):
   3: Invalid YAML format in Chart.yaml *
   4: mapping values are not allowed in this context at line 2 column 10
 
-NOTE: Some redundant information has been removed from the lines marked with *. 
+NOTE: Some redundant information has been removed from the lines marked with *.
 Set SNAFU_RAW_ERROR_MESSAGES=1 to disable this behavior.
 ```
 
