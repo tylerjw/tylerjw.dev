@@ -1,23 +1,23 @@
-exclude: '.vscode/.*'
+exclude: ".vscode/.*"
 repos:
   # Standard hooks
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
     hooks:
       - id: check-added-large-files
-        exclude: 'static/.*'
+        exclude: "static/.*"
       - id: check-case-conflict
       - id: check-json
       - id: check-merge-conflict
       - id: check-symlinks
       - id: check-toml
       - id: check-yaml
+        exclude: "error-example/.*"
       - id: debug-statements
       - id: destroyed-symlinks
       - id: detect-private-key
       - id: end-of-file-fixer
       - id: mixed-line-ending
-      - id: pretty-format-json
       - id: trailing-whitespace
 
   - repo: https://github.com/psf/black-pre-commit-mirror
@@ -29,4 +29,4 @@ repos:
     rev: v2.4.1
     hooks:
       - id: codespell
-        args: ['--write-changes', '--ignore-words=.codespell_words']
+        args: ["--write-changes", "--ignore-words=.codespell_words"]
