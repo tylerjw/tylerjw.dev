@@ -118,8 +118,8 @@ def grayed_before_after_code_slide(
     box = content.box(y=0, width="100%", height="100%", p_bottom=20, z_level=-2)
     box.rect(bg_color=code_bg, rx=20, ry=20)
     overlay = box.overlay()
-    (before, code) = split_lines(code, code_start)
-    (code, after) = split_lines(code, code_lines)
+    before, code = split_lines(code, code_start)
+    code, after = split_lines(code, code_lines)
     before_box = overlay.sbox(
         name="before", x=0, y=0, p_left=20, p_right=20, p_top=20, p_bottom=20, z_level=0
     )
