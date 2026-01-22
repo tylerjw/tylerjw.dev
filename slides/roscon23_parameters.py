@@ -8,7 +8,6 @@ import elsie
 from elsie.ext import unordered_list
 from my_layouts import *
 
-
 slides = init_deck()
 
 
